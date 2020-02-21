@@ -1,0 +1,10 @@
+exclude_patterns:
+  - "tests/"
+  - "spec/"
+  - "**/vendor/"
+  - "**/node_modules/"
+  - "package-lock.json"
+  - "package.json"
+  - "*.md"
+  - "**/*.spec.js"
+  - "**/*.test.js"
