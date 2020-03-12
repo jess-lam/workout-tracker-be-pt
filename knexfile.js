@@ -10,7 +10,7 @@ module.exports = {
       max: 10
     },
     migrations: {
-      Directory: './database/migrations'
+      directory: './database/migrations'
     }
   },
 
@@ -22,7 +22,7 @@ module.exports = {
       max: 10
     },
     migrations: {
-      Directory: './database/migrations'
+      directory: './database/migrations'
     }
   },
 
