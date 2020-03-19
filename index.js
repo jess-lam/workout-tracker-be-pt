@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const server = express();
-
+const PORT = process.env.PORT || 3000;
 
 server.use(bodyParser.json());
 
@@ -22,7 +22,7 @@ server.get('/', (req, res) => {
 
 server.get('/users', userDB.getUsers);
 
-server.listen(process.env.DB_PORT || 3001, () => {
+server.listen(PORT, () => {
     console.log("***Server is listening***");
 })
 
