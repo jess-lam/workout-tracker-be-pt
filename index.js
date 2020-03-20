@@ -1,4 +1,3 @@
-// const server = require('./server/server');
 const express = require('express');
 const bodyParser = require('body-parser');
 const server = express();
@@ -20,7 +19,12 @@ server.get('/', (req, res) => {
     })
 });
 
+//Postgres user routes
 server.get('/users', userDB.getUsers);
+server.get('/users/:id', userDB.getUserById);
+server.post('/users', userDB.createUser);
+server.put('/users/:id', userDB.updateUser);
+server.delete('/users/:id', userDB.deleteUser);
 
 server.listen(PORT, () => {
     console.log("***Server is listening***");

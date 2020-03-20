@@ -7,5 +7,5 @@ module.exports = {
 }
 
 function getUsers(){
-    return db("test_table");
+    return db("users");
 }
