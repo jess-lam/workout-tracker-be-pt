@@ -1,16 +1,11 @@
 const express = require('express');
-
-const apiRouter = require('./api-router');
-
+const bodyParser = require('body-parser');
 const server = express();
 
+server.use(bodyParser.json());
 
-//Routes
-server.use('/api', apiRouter);
-
-//Main Route
-server.get('/', (req, res) => {
-    res.status(200).send({message: "Server is live"})
-});
-
-module.exports = server;
+server.use(
+    bodyParser.urlencoded({
+        extended: true
+    })
+);
