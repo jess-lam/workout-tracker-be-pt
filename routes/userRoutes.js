@@ -5,7 +5,7 @@ const getUsers = (req, res) => {
         if (err){
             res.status(500).json(err)       
         }
-        res.status(200).json(results)
+        res.status(200).json(results.rows)
     })
 }
 
@@ -15,7 +15,7 @@ const getUserById = (req, res) => {
         if(err){
             res.status(500).json(err)
         }
-        res.status(200).json(results)
+        res.status(200).json(results.rows)
     })
 }
 
