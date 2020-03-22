@@ -20,6 +20,7 @@ const getUserById = (req, res) => {
 }
 
 const createUser = (req, res) => {
+    const id = parseInt(req.params.id);
     const data = {
         oauth_id: req.body.oauth_id,
          username: req.body.username,
@@ -44,7 +45,7 @@ const createUser = (req, res) => {
         if(err){
             res.status(500).json(err)
         } 
-        res.status(201).send(`User added with ID: ${results.insertId}`)
+        res.status(201).send(`User added with ID: ${results.id}`)
     })
 }
 
