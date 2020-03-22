@@ -20,8 +20,27 @@ const getUserById = (req, res) => {
 }
 
 const createUser = (req, res) => {
-    const { oauth_id, username, email, userpassword, goal, goal_startdate, goal_enddate } = res.body;
-    pool.query('INSERT INTO users (oauth_id, username, email, userpassword, goal, goal_startdate, goal_enddate) VALUES ($1, $2, $3, $4, $5, $6, $7)', [oauth_id, username, email, userpassword, goal, goal_startdate, goal_enddate], (err, results) => {
+    const data = {
+        oauth_id: req.body.oauth_id,
+         username: req.body.username,
+         email: req.body.email,
+         userpassword: req.body.userpassword,
+         goal: req.body.goal,
+         goal_startdate: req.body.goal_startdate,
+         goal_enddate : req.body.goal_enddate
+        };
+        
+        const values = [
+            data.oauth_id,
+            data.email,
+            data.username,
+            data.userpassword,
+            data.goal,
+            data.goal_startdate,
+            data.goal_enddate
+        ];
+        
+    pool.query('INSERT INTO users (oauth_id, username, email, userpassword, goal, goal_startdate, goal_enddate) VALUES ($1, $2, $3, $4, $5, $6, $7)',  values, (err, results) => {
         if(err){
             res.status(500).json(err)
         } 
