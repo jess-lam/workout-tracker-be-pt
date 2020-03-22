@@ -11,17 +11,17 @@ const getUsers = (req, res) => {
 
 const getUserById = (req, res) => {
     const id = parseInt(req.params.id);
-    pool.query('SELECT * FROM users WHERE id = $1', [id], (err, results) => {
+    pool.query('SELECT * FROM users WHERE id = $1', id, (err, results) => {
         if(err){
             res.status(500).json(err)
         }
-        res.status(200).json(results)
+        res.status(200).json(results.id)
     })
 }
 
 const createUser = (req, res) => {
     const id = parseInt(req.params.id);
-    const data = {
+      const data = {
         oauth_id: req.body.oauth_id,
          username: req.body.username,
          email: req.body.email,
@@ -45,14 +45,27 @@ const createUser = (req, res) => {
         if(err){
             res.status(500).json(err)
         } 
-        res.status(201).send(`User added with ID: ${results.id}`)
+        res.status(201).send(`User added with ID: ${id}`)
     })
 }
 
 const updateUser = (req, res) => {
     const id = parseInt(req.params.id);
-    const { email, userpassword, goal, goal_startdate, goal_enddate } = req.body;
-    pool.query('UPDATE users SET email = $1, userpassword = $2, goal = $3, goal_startdate = $4, goal_enddate = $5 WHERE id = $6', [email, userpassword, goal, goal_startdate, goal_enddate, id], (err, results) => {
+    const data = {
+        email: req.body.email,
+        userpassword: req.body.userpassword,
+        goal: req.body.goal,
+        goal_startdate: req.body.goal_startdate,
+        goal_enddate: req.body.goal_enddate
+    }
+    const values = [
+        data.email,
+        data.userpassword,
+        data.goal,
+        data.goal_startdate,
+        data.goal_enddate
+    ]
+    pool.query('UPDATE users SET email = $1, userpassword = $2, goal = $3, goal_startdate = $4, goal_enddate = $5 WHERE id = $6', values, (err, results) => {
         if(err){
             res.status(500).json(err)
         } 
@@ -62,7 +75,7 @@ const updateUser = (req, res) => {
 
 const deleteUser = (req, res) => {
     const id = parseInt(req.params.id);
-    pool.query('DELETE FROM users WHERE id = $1', [id], (err, results) => {
+    pool.query('DELETE FROM users WHERE id = $1', id, (err, results) => {
         if(err){
             res.status(500).json(err)
         }
