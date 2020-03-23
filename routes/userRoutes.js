@@ -45,7 +45,7 @@ const createUser = (req, res) => {
         if(err){
             res.status(500).json(err)
         } 
-        res.status(201).send(`User added with ID: ${id}`)
+        res.status(201).json({message: 'User added'})
     })
 }
 
@@ -55,7 +55,7 @@ const updateUser = (req, res) => {
         if(err){
             res.status(500).json(err)
         } 
-        res.status(201).send(`User modified with ID: ${id}`)
+        res.status(201).json({message: 'User updated'})
     })
 }
 
@@ -65,7 +65,7 @@ const deleteUser = (req, res) => {
         if(err){
             res.status(500).json(err)
         }
-        res.status(200).send(`User deleted with ID: ${id}`)
+        res.status(200).json({message: 'User deleted'})
     })
 }
 
