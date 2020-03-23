@@ -61,9 +61,9 @@ const updateUser = (req, res) => {
 
 const deleteUser = (req, res) => {
     const id = parseInt(req.params.id);
-    pool.query('DELETE FROM users WHERE id = $1', id, (err, results) => {
+    pool.query('DELETE FROM users WHERE id = $1', [id], (err, results) => {
         if(err){
-            res.status(500).json(err)
+            res.status(500).json({message: 'There seems to be an error in the database'})
         }
         res.status(200).json({message: 'User deleted'})
     })
