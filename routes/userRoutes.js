@@ -11,11 +11,11 @@ const getUsers = (req, res) => {
 
 const getUserById = (req, res) => {
     const id = parseInt(req.params.id);
-    pool.query('SELECT * FROM users WHERE id = $1', id, (err, results) => {
+    pool.query('SELECT * FROM users WHERE id = $1', [id], (err, results) => {
         if(err){
             res.status(500).json(err)
         }
-        res.status(200).json(results.id)
+        res.status(200).json(results.rows)
     })
 }
 
