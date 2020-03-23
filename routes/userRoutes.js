@@ -65,7 +65,7 @@ const updateUser = (req, res) => {
         data.goal_startdate,
         data.goal_enddate
     ]
-    pool.query('UPDATE users SET email = $1, userpassword = $2, goal = $3, goal_startdate = $4, goal_enddate = $5 WHERE id = $6', values, (err, results) => {
+    pool.query('UPDATE users SET email = $1, userpassword = $2, goal = $3, goal_startdate = $4, goal_enddate = $5 WHERE id = $6', [values, id], (err, results) => {
         if(err){
             res.status(500).json(err)
         } 
