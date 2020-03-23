@@ -50,22 +50,8 @@ const createUser = (req, res) => {
 }
 
 const updateUser = (req, res) => {
-    const id = parseInt(req.params.id);
-    const data = {
-        email: req.body.email,
-        userpassword: req.body.userpassword,
-        goal: req.body.goal,
-        goal_startdate: req.body.goal_startdate,
-        goal_enddate: req.body.goal_enddate
-    }
-    const values = [
-        data.email,
-        data.userpassword,
-        data.goal,
-        data.goal_startdate,
-        data.goal_enddate
-    ]
-    pool.query('UPDATE users SET email = $1, userpassword = $2, goal = $3, goal_startdate = $4, goal_enddate = $5 WHERE id = $6', [values, id], (err, results) => {
+      
+    pool.query('UPDATE users SET email = $1, userpassword = $2, goal = $3, goal_startdate = $4, goal_enddate = $5 WHERE id = $6', [req.body.email, req.body.userpassword, req.body.goal, req.body.goal_startdate, req.body.goal_enddate, parseInt(req.params.id)], (err, results) => {
         if(err){
             res.status(500).json(err)
         } 
