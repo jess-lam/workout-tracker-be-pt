@@ -33,8 +33,8 @@ const createUser = (req, res) => {
         
         const values = [
             data.oauth_id,
-            data.email,
             data.username,
+            data.email,
             data.userpassword,
             data.goal,
             data.goal_startdate,
