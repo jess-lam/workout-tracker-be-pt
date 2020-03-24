@@ -60,7 +60,7 @@ const updateUser = (req, res) => {
 }
 
 const userLogin = (req, res) => {
-    pool.query('SELECT FROM users WHERE username = $1, userpassword = $2',[req.body.username, req.body.userpassword], (err, results) => {
+    pool.query('SELECT * FROM users WHERE username = $1, userpassword = $2',[req.body.username, req.body.userpassword], (err, results) => {
         if(err){
             res.status(500).json({message: 'User not found'})
         }
