@@ -1,3 +1,5 @@
+import { text } from 'express';
+
 const { pool } = require('../config');
 
 const getUsers = (req, res) => {
@@ -31,6 +33,7 @@ const createUser = (req, res) => {
          goal_enddate : req.body.goal_enddate
         };
         
+  
         const values = [
             data.oauth_id,
             data.username,
