@@ -1,5 +1,3 @@
-import { text } from 'express';
-
 const { pool } = require('../config');
 
 const getUsers = (req, res) => {
