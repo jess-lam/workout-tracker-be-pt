@@ -61,11 +61,11 @@ const updateUser = (req, res) => {
 }
 
 const userLogin = (req, res) => {
-    pool.query('SELECT EXISTS (SELECT * FROM users WHERE username = $1, userpassword = $2)',[req.body.username, req.body.userpassword], (err, results) => {
+    pool.query('SELECT EXISTS (SELECT * FROM users WHERE username = $1 AND userpassword = $2)',[req.body.username, req.body.userpassword], (err, results) => {
         if(err){
             res.status(500).json({message: 'User not found'})
         }
-        res.status(200).json({message: `Welcome ${username}`})
+        res.status(200).json({message: `Welcome ${req.body.username}`})
     })
 }
 
