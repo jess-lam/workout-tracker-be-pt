@@ -9,4 +9,4 @@ exclude_patterns:
   - "**/*.spec.js"
   - "**/*.test.js"
   - "**/routes/"
-  - "**/database/migrations/"
+  - "**/database/"
