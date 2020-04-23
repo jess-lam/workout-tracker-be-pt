@@ -16,9 +16,14 @@ server.use(
 server.use(bodyParser.json());
 
 //import Routes
+const mainRoutes = require('./api/routes/mainRoute');
 const userRoutes = require('./api/routes/userRoutes');
 
 //set routes here
+//main route
+server.use('/', mainRoutes);
+
+//user routes
 server.use('/users', userRoutes);
 
 //set the port here
