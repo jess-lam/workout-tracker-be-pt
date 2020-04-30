@@ -42,7 +42,6 @@ To get the server running locally:
 
 ```
 {
-  oauth_id: req.body.oauth_id,
   username: req.body.username,
   email: req.body.email,
   password: hash,
