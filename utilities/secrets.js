@@ -1,3 +1,6 @@
+require('dotenv').config();
+
 module.exports = {
-    jwtSecret: process.env.JWT_SECRET || "Peanut_Butter_Jelly_Time"
+    jwtSecret: JSON.parse(`"${process.env.JWT_SECRET}"`) || "Peanut_Butter_Jelly_Time",
+    jwtPublic: JSON.parse(`"${process.env.JWT_Public}"`) || "Test"
 };
