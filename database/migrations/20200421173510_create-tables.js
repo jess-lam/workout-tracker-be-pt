@@ -15,13 +15,12 @@ exports.up = function(knex) {
                 tbl.integer('zip', 5)
                 .unsigned();
                 tbl.boolean('affiliate')
-                .notNullable();
+                .defaultTo(false)
                 tbl.boolean('verified')
-                .notNullable();
+                .defaultTo(false)
                 tbl.integer('xp')
                 .defaultTo(0)
                 .unsigned()
-                .notNullable();
             })
             .createTable('workouts', tbl =>{
                 tbl.increments();
@@ -182,16 +181,16 @@ exports.up = function(knex) {
 exports.down = function(knex) {
     return(
         knex.schema
-            .dropTableifExists('users')
-            .dropTableifExists('workouts')
-            .dropTableifExists('diets')
-            .dropTableifExists('total_workouts')
-            .dropTableifExists('following')
-            .dropTableifExists('achieved')
-            .dropTableifExists('badges')
-            .dropTableifExists('entity')
-            .dropTableifExists('ratings')
-            .dropTableifExists('liked')
-            .dropTableifExists('comments')
+            .dropTableIfExists('comments')
+            .dropTableIfExists('liked')
+            .dropTableIfExists('ratings')
+            .dropTableIfExists('entity')
+            .dropTableIfExists('achieved')
+            .dropTableIfExists('badges')
+            .dropTableIfExists('following')
+            .dropTableIfExists('total_workouts')
+            .dropTableIfExists('diets')
+            .dropTableIfExists('workouts')
+            .dropTableIfExists('users')
     )
 };
