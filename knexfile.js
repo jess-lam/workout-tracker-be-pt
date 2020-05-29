@@ -21,6 +21,23 @@ module.exports = {
     },
     useNullAsDefault: true
   },
+  testing: {
+    client: 'pg',
+    connection: {
+      host: 'localhost',
+      user: 'postgres',
+      password: `${process.env.DB_LOCALPASSWORD}`,
+      database: 'test'
+    },
+    migrations: {
+      directory: './database/migrations',
+      tableName: 'knex_migrations'
+    },
+    seeds: {
+      directory: './database/seeds'
+    },
+    useNullAsDefault: true
+  },
 
   production: {
     client: 'pg',
