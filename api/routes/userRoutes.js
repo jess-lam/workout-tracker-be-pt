@@ -20,7 +20,6 @@ router.get('/org', (req, res) => {
 //GET USER BY ID
 router.get('/:id', (req, res) => {
     const id = req.params.id
-    console.log(req.params.id)
     Users.findById(id)
         .then(user => {
             if(user){
@@ -36,10 +35,10 @@ router.get('/:id', (req, res) => {
 });
 
 //UPDATE USER
-//returns empty object - not working properly
-router.put('/:id', (req, res) => {
+router.put('/', (req, res) => {
     const updatedUser = req.body;
-    Users.findBy(req.params.id, updatedUser)
+    const user_id = req.userId;
+    Users.updateUser(user_id, updatedUser)
         .then(user => {
             if(user) {
                 res.status(200).json(user);
@@ -53,8 +52,8 @@ router.put('/:id', (req, res) => {
 });
 
 //DELETE USER
-router.delete('/:id', (req, res) => {
-    const id = req.params.id;
+router.delete('/', (req, res) => {
+    const id = req.userId
         Users.deleteUser(id)
         .then(user => {
             res.status(200).json({message: 'User deleted'})

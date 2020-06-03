@@ -10,15 +10,27 @@ exports.up = function (knex) {
       tbl.boolean('affiliate').defaultTo(false);
       tbl.boolean('verified').defaultTo(false);
       tbl.integer('xp').defaultTo(0).unsigned();
+      tbl.integer('height').defaultTo(0).unsigned();
+      tbl.decimal('weight', 3, 2).defaultTo(0).unsigned();
+      tbl.binary('image');
     })
     .createTable('workouts', (tbl) => {
       tbl.increments();
+      tbl.string('workout_category').notNullable();
       tbl.string('workout_title').notNullable();
       tbl.date('workout_date').notNullable();
       tbl.time('workout_start_time').notNullable();
       tbl.time('workout_end_time').notNullable();
       tbl.string('workout_description');
-      tbl.boolean('completed').defaultTo(false).notNullable();
+      tbl.boolean('completed').defaultTo(false);
+      tbl
+        .integer('user_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
     })
     .createTable('diets', (tbl) => {
       tbl.increments();
@@ -33,25 +45,6 @@ exports.up = function (knex) {
       tbl.text('food_name').notNullable();
       tbl.text('meal_category').notNullable();
       tbl.text('food_stats').notNullable();
-    })
-    .createTable('total_workouts', (tbl) => {
-      tbl.increments();
-      tbl
-        .integer('user_id')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('users')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-      tbl
-        .integer('workout_id')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('workouts')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
     })
     .createTable('following', (tbl) => {
       tbl.increments();
@@ -176,8 +169,8 @@ exports.down = function (knex) {
     .dropTableIfExists('achieved')
     .dropTableIfExists('badges')
     .dropTableIfExists('following')
-    .dropTableIfExists('total_workouts')
     .dropTableIfExists('diets')
+    .dropTableIfExists('total_workouts')
     .dropTableIfExists('workouts')
     .dropTableIfExists('users');
 };
