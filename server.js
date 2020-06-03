@@ -14,6 +14,7 @@ server.use(express.json());
 const mainRoutes = require('./api/routes/mainRoute');
 const registrationRoute = require('./api/routes/registrationRoute');
 const userRoutes = require('./api/routes/userRoutes');
+const dietRoute = require('./api/routes/dietRoute');
 const restricted = require('./validation/middleware/restricted-middlware');
 
 //set routes here
@@ -21,9 +22,10 @@ const restricted = require('./validation/middleware/restricted-middlware');
 server.use('/', mainRoutes);
 
 //registration
-server.use('/api', registrationRoute)
+server.use('/api', registrationRoute);
 
 //user routes
 server.use('/api/users', restricted, userRoutes);
+server.use('/api/diets', restricted, dietRoute);
 
-module.exports = server
+module.exports = server;

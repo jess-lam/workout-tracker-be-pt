@@ -2,13 +2,18 @@ const db = require('../../database/connection');
 
 module.exports = {
   add,
+  findBy,
   getAll,
   update,
   remove,
 };
 
-function add(food) {
-  return db('diets').insert(food);
+function add(diet) {
+  return db('diets').insert(diet);
+}
+
+function findBy(id) {
+  return db('diets').where(id);
 }
 
 function getAll() {
