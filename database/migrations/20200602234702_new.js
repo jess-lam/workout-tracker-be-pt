@@ -15,12 +15,12 @@ exports.up = function (knex) {
             tbl.integer('zip', 5)
                 .unsigned();
             tbl.boolean('affiliate')
-                .defaultTo(false)
+                .defaultTo(false);
             tbl.boolean('verified')
-                .defaultTo(false)
+                .defaultTo(false);
             tbl.integer('xp')
                 .defaultTo(0)
-                .unsigned()
+                .unsigned();
         })
         .createTable('workouts', tbl => {
             tbl.increments();
@@ -36,7 +36,7 @@ exports.up = function (knex) {
                 .notNullable();
             tbl.string('workout_description');
             tbl.boolean('completed')
-                .defaultTo(false)
+                .defaultTo(false);
             tbl.integer('user_id')
                 .unsigned()
                 .notNullable()
@@ -180,8 +180,8 @@ exports.down = function (knex) {
         .dropTableIfExists('badges')
         .dropTableIfExists('following')
         .dropTableIfExists('diets')
+        .dropTableIfExists('total_workouts')
         .dropTableIfExists('workouts')
         .dropTableIfExists('users')
-
     )
 };
