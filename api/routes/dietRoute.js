@@ -18,8 +18,8 @@ router.get('/', (req, res) => {
 // Add a diet food entry
 router.post('/', restricted, (req, res) => {
   const dietData = req.body;
-  console.log('Diet', dietData);
-  //dietData.user = req.userId
+  dietData.user_id = req.userId;
+
   Diet.add(dietData)
     .then((diet) => {
       res.status(201).json(diet);

@@ -170,7 +170,6 @@ exports.down = function (knex) {
     .dropTableIfExists('badges')
     .dropTableIfExists('following')
     .dropTableIfExists('diets')
-    .dropTableIfExists('total_workouts')
     .dropTableIfExists('workouts')
     .dropTableIfExists('users');
 };

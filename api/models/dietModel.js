@@ -9,7 +9,7 @@ module.exports = {
 };
 
 function add(diet) {
-  return db('diets').insert(diet);
+  return db('diets').insert(diet).returning('*');
 }
 
 function findBy(id) {
@@ -21,9 +21,9 @@ function getAll() {
 }
 
 function update(changes, id) {
-  return db('diets').where({ id }).update(changes);
+  return db('diets').where({ id }).update(changes).returning('*');
 }
 
 function remove(id) {
-  return db('user').where({ id }).del();
+  return db('diets').where({ id }).del();
 }
