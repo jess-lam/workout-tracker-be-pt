@@ -41,9 +41,10 @@ function findBy(filter) {
 
 function getWorkoutsByUser(id) {
     return db('users')
-        .join( 'workouts', 'users.id', '=', 'workouts.user_id' )
+        .join('workouts', 'users.id', '=', 'workouts.user_id')
         .where('users.id', '=', id)
-        .select('workouts.workout_category', 
+        .select(
+            'workouts.workout_category',
             'workouts.workout_title',
             'workouts.workout_date',
             'workouts.workout_start_time',
@@ -53,24 +54,24 @@ function getWorkoutsByUser(id) {
         )
 }
 
-async function addWorkout(workout){
-    const [id] = await db('workouts').insert(workout, "id")
+async function addWorkout(workout) {
+    await db('workouts').insert(workout)
 
-    return db('workouts').where('workouts.id', '=', id)
+    return 1;
 }
 
-async function editWorkout(workout, id){
+async function editWorkout(workout, id) {
     const res = await db('workouts').where('workouts.id', '=', id)
-    .where('workouts.user_id', '=', workout.user_id)
-    .update(workout)
+        .where('workouts.user_id', '=', workout.user_id)
+        .update(workout)
 
     return db('workouts').where('workouts.id', '=', id)
 }
 
-function deleteWorkout(userId, id){
+function deleteWorkout(userId, id) {
     return db('workouts').where('workouts.id', '=', id)
-    .where('workouts.user_id', '=', userId)
-    .del()
+        .where('workouts.user_id', '=', userId)
+        .del()
 }
 
 
