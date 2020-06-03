@@ -55,6 +55,7 @@ function getWorkoutsByUser(id) {
 }
 
 async function addWorkout(workout) {
+    console.log(workout);
     await db('workouts').insert(workout)
 
     return 1;
