@@ -4,7 +4,7 @@ const Diet = require('../models/dietModel');
 const restricted = require('../../validation/middleware/restricted-middlware');
 const router = express.Router();
 
-// Get a list of diet foods
+// Get a list of existing diet foods
 router.get('/', (req, res) => {
   Diet.getAll()
     .then((diet) => {
@@ -12,6 +12,25 @@ router.get('/', (req, res) => {
     })
     .catch((err) => {
       res.status(500).json({ message: 'Could not retrieve diet', err });
+    });
+});
+
+// Get a diet food entry by id
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+
+  Diet.findById(id)
+    .then((entry) => {
+      if (entry) {
+        res.json(entry);
+      } else {
+        res
+          .status(404)
+          .json({ message: 'Could not find this entry with the given id' });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ message: 'Could not retrieve this entry', err });
     });
 });
 
@@ -30,14 +49,17 @@ router.post('/', restricted, (req, res) => {
 });
 
 // Update a diet food entry
-router.put('/:id', (req, res) => {
+router.put('/:id', restricted, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
+  changes.user_id = req.userId;
 
-  Diet.findBy(id, changes)
+  Diet.findById(id)
     .then((food) => {
       if (food) {
-        res.status(200).json(food);
+        Diet.update(changes, id).then((updatedDiet) => {
+          res.status(200).json(updatedDiet);
+        });
       } else {
         res.status(404).json({ message: 'Could not find a matching entry' });
       }
@@ -48,13 +70,16 @@ router.put('/:id', (req, res) => {
 });
 
 // Delete a diet food entry
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
   const { id } = req.params;
-  const user_id = req.userId;
 
-  Diet.remove(user_id, id)
+  Diet.remove(id)
     .then((deleted) => {
-      res.json({ removed: deleted });
+      if (deleted) {
+        res.json({ removed: deleted });
+      } else {
+        res.status(404).json({ message: 'Could not find a matching entry' });
+      }
     })
     .catch((err) => {
       res.status(500).json({ message: 'Could not remove this entry', err });
