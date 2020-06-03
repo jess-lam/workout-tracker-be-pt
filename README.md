@@ -23,16 +23,27 @@ To get the server running locally:
 
 ## Endpoints
 
+ All endpoints start with `/api`
+
 #### User Routes
 
-| Method | Endpoint                | Access Control      | Description                                        |
+| Method | Endpoint                | Access Control      |    Description                                     |
 | ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `users/org`             | all users           | Returns info for all users.                        |
+| GET    | `/users/org`            | users               | Returns info for all users.                        |
 | GET    | `/login`                | users               | Logs that user in.                                 |
 | GET    | `/users/:userId`        | users               | Returns info for a single user.                    |
 | POST   | `/users/register`       | none                | Creates a new user.                                |
-| PUT    | `/users/:userId`        | users               | Updates the current user.                          |
-| DELETE | `/users/:userId`        | users               | Deletes the current user.                          |
+| PUT    | `/users`                | users               | Updates the current user.                          |
+| DELETE | `/users`                | users               | Deletes the current user.                          |
+
+#### Workout Routes
+
+| Method | Endpoint                | Access Control      |    Description                                     |
+| ------ | ----------------------- | ------------------- | -------------------------------------------------- |
+| GET    | `/workouts`             | users               | Gets all workouts for logged in user               |
+| POST   | `/workouts`             | users               | Adds workout to currently logged in user           |
+| PUT    | `/workouts/:id`         | users               | Edits a workout that said user owns with given id  |
+| DELETE | `/workouts/:id`         | users               | Deletes a workout that said user owns with given id|
 
 # Data Model
 
@@ -42,13 +53,34 @@ To get the server running locally:
 
 ```
 {
-  username: req.body.username,
-  email: req.body.email,
-  password: hash,
-  goal: req.body.goal,
-  goal_startdate: req.body.goal_startdate,
-  goal_enddate : req.body.goal_enddate
+  id: 
+  username:
+  email:
+  password:
+  bio:
+  zip:
+  affiliate:
+  verified:
+  xp:
 }
+```
+
+#### Workouts
+
+---
+
+```
+  {
+    workout_category:
+    workout_title:
+    workout_date:
+    workout_start_time:
+    workout_end_time:
+    workout_description:
+    completed:
+    user_id:
+  }
+
 ```
 
 ## Actions
@@ -69,13 +101,27 @@ In order for the app to function correctly, the user must set up their own envir
 
 create a .env file that includes the following:
     
-    *  DEV_DB_USER
-    *  DEV_DB_PASSWORD
-    *  DEV_DB_HOST
-    *  DEV_DB_DATABASE
-    *  DEV_DB_ENV='development'
-    *  DEV_DATABASE_URL
-    *  DATABASE_URL
+ *JWT_SECRET=
+
+ *JWT_PUBLIC=
+
+ *DB_ENV=
+ *DB_USER=
+
+ *DB_LOCALPASSWORD=
+ *DB_HOST=
+ *DB_PORT=
+ *DB_DATABASE=
+
+ *DB_NAME=
+ *DB_HOST=
+ *DB_PORT=
+ *DB_USER=
+ *DB_PASSWORD=
+ *DB_SSLMODE=
+ *DB_URL=
+
+ *DB_DATABASE_URL=
     
 ## Contributing
 

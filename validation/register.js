@@ -1,4 +1,4 @@
-const reg = require('./regex');
+const {email} = require('./regex');
 const ifEmpty = require('./checkForEmpty');
 
 module.exports = function checkRegistrationFields(user){
@@ -11,7 +11,7 @@ module.exports = function checkRegistrationFields(user){
     data.password = ifEmpty(data.password) ? data.password : "";
     data.username = ifEmpty(data.username) ? data.username : "";
 
-    if (reg.test(data.email)){
+    if (!email.test(data.email)){
         error.email = "Invalid Email"
     }
     if (data.password = ""){

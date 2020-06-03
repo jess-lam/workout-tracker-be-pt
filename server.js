@@ -14,7 +14,9 @@ server.use(express.json());
 const mainRoutes = require('./api/routes/mainRoute');
 const registrationRoute = require('./api/routes/registrationRoute');
 const userRoutes = require('./api/routes/userRoutes');
+const workoutRoutes = require('./api/routes/workoutRoutes');
 const restricted = require('./validation/middleware/restricted-middlware');
+
 
 //set routes here
 //main route
@@ -25,5 +27,6 @@ server.use('/api', registrationRoute)
 
 //user routes
 server.use('/api/users', restricted, userRoutes);
+server.use('/api/workouts', restricted, workoutRoutes)
 
 module.exports = server
