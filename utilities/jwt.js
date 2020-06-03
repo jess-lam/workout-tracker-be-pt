@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const {jwtSecret, jwtPublic} = require('./secrets');
 
 function generateToken(user){
-    console.log(jwtSecret);
+
     const payload = {
         subject: user.id,
         email: user.email

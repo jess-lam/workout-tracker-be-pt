@@ -1,4 +1,4 @@
-const reg = require('./regex');
+const {email} = require('./regex');
 const ifEmpty = require('./checkForEmpty');
 
 module.exports = function validateLoginInput(user){
@@ -9,7 +9,7 @@ module.exports = function validateLoginInput(user){
     data.email = ifEmpty(data.email) ? data.email : "";
     data.password = ifEmpty(data.password) ? data.password : "";
 
-    if (reg.test(data.email)){
+    if (!email.test(data.email)){
         errors.email = "Invalid Email";
     }
     if (data.password = ""){
