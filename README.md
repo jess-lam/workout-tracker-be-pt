@@ -23,27 +23,37 @@ To get the server running locally:
 
 ## Endpoints
 
- All endpoints start with `/api`
+All endpoints start with `/api`
 
 #### User Routes
 
-| Method | Endpoint                | Access Control      |    Description                                     |
-| ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `/users/org`            | users               | Returns info for all users.                        |
-| GET    | `/login`                | users               | Logs that user in.                                 |
-| GET    | `/users/:userId`        | users               | Returns info for a single user.                    |
-| POST   | `/users/register`       | none                | Creates a new user.                                |
-| PUT    | `/users`                | users               | Updates the current user.                          |
-| DELETE | `/users`                | users               | Deletes the current user.                          |
+| Method | Endpoint          | Access Control | Description                     |
+| ------ | ----------------- | -------------- | ------------------------------- |
+| GET    | `/users/org`      | users          | Returns info for all users.     |
+| GET    | `/users/:userId`  | users          | Returns info for a single user. |
+| POST   | `/login`          | users          | Logs that user in.              |
+| POST   | `/users/register` | none           | Creates a new user.             |
+| PUT    | `/users`          | users          | Updates the current user.       |
+| DELETE | `/users`          | users          | Deletes the current user.       |
 
 #### Workout Routes
 
-| Method | Endpoint                | Access Control      |    Description                                     |
-| ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `/workouts`             | users               | Gets all workouts for logged in user               |
-| POST   | `/workouts`             | users               | Adds workout to currently logged in user           |
-| PUT    | `/workouts/:id`         | users               | Edits a workout that said user owns with given id  |
-| DELETE | `/workouts/:id`         | users               | Deletes a workout that said user owns with given id|
+| Method | Endpoint        | Access Control | Description                                         |
+| ------ | --------------- | -------------- | --------------------------------------------------- |
+| GET    | `/workouts`     | users          | Gets all workouts for logged in user                |
+| POST   | `/workouts`     | users          | Adds workout to currently logged in user            |
+| PUT    | `/workouts/:id` | users          | Edits a workout that said user owns with given id   |
+| DELETE | `/workouts/:id` | users          | Deletes a workout that said user owns with given id |
+
+#### Diet/Food Entry Routes
+
+| Method | Endpoint     | Access Control | Description                                         |
+| ------ | ------------ | -------------- | --------------------------------------------------- |
+| GET    | `/diets`     | users          | Gets all food entries for logged in user            |
+| GET    | `/diets/:id` | users          | Gets a food entries with the specified id number    |
+| POST   | `/diets`     | users          | Adds a food entry to currently logged in user       |
+| PUT    | `/diets/:id` | users          | Edits a food entry with the specified id number     |
+| DELETE | `/diets/:id` | users          | Deletes a a food entry with the specified id number |
 
 # Data Model
 
@@ -53,7 +63,7 @@ To get the server running locally:
 
 ```
 {
-  id: 
+  id:
   username:
   email:
   password:
@@ -62,6 +72,9 @@ To get the server running locally:
   affiliate:
   verified:
   xp:
+  weight:
+  height:
+  image:
 }
 ```
 
@@ -83,6 +96,19 @@ To get the server running locally:
 
 ```
 
+#### Diet/Food
+
+---
+
+```
+  {
+    meal_category:
+    food_name:
+    food_stats:
+  }
+
+```
+
 ## Actions
 
 `getUsers()` -> Returns all users.
@@ -100,29 +126,29 @@ To get the server running locally:
 In order for the app to function correctly, the user must set up their own environment variables.
 
 create a .env file that includes the following:
-    
- *JWT_SECRET=
 
- *JWT_PUBLIC=
+\*JWT_SECRET=
 
- *DB_ENV=
- *DB_USER=
+\*JWT_PUBLIC=
 
- *DB_LOCALPASSWORD=
- *DB_HOST=
- *DB_PORT=
- *DB_DATABASE=
+*DB_ENV=
+*DB_USER=
 
- *DB_NAME=
- *DB_HOST=
- *DB_PORT=
- *DB_USER=
- *DB_PASSWORD=
- *DB_SSLMODE=
- *DB_URL=
+*DB_LOCALPASSWORD=
+*DB_HOST=
+*DB_PORT=
+*DB_DATABASE=
 
- *DB_DATABASE_URL=
-    
+*DB_NAME=
+*DB_HOST=
+*DB_PORT=
+*DB_USER=
+*DB_PASSWORD=
+*DB_SSLMODE=
+\*DB_URL=
+
+\*DB_DATABASE_URL=
+
 ## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
@@ -131,11 +157,12 @@ Please note we have a [code of conduct](./code_of_conduct.md). Please follow it 
 
 ### Issue/Bug Request
 
- **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
- - Check first to see if your issue has already been reported.
- - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
- - Create a live example of the problem.
- - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+**If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
+
+- Check first to see if your issue has already been reported.
+- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+- Create a live example of the problem.
+- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 
