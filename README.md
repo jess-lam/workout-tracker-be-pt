@@ -47,13 +47,13 @@ All endpoints start with `/api`
 
 #### Diet/Food Entry Routes
 
-| Method | Endpoint     | Access Control | Description                                         |
-| ------ | ------------ | -------------- | --------------------------------------------------- |
-| GET    | `/diets`     | users          | Gets all food entries for logged in user            |
-| GET    | `/diets/:id` | users          | Gets a food entries with the specified id number    |
-| POST   | `/diets`     | users          | Adds a food entry to currently logged in user       |
-| PUT    | `/diets/:id` | users          | Edits a food entry with the specified id number     |
-| DELETE | `/diets/:id` | users          | Deletes a a food entry with the specified id number |
+| Method | Endpoint     | Access Control | Description                                       |
+| ------ | ------------ | -------------- | ------------------------------------------------- |
+| GET    | `/diets`     | users          | Gets all food entries for logged in user          |
+| GET    | `/diets/:id` | users          | Gets a food entry with the specified id number    |
+| POST   | `/diets`     | users          | Adds a food entry to currently logged in user     |
+| PUT    | `/diets/:id` | users          | Edits a food entry with the specified id number   |
+| DELETE | `/diets/:id` | users          | Deletes a food entry with the specified id number |
 
 # Data Model
 
