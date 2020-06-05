@@ -27,14 +27,14 @@ All endpoints start with `/api`
 
 #### User Routes
 
-| Method | Endpoint          | Access Control | Description                     |
-| ------ | ----------------- | -------------- | ------------------------------- |
-| GET    | `/users/org`      | users          | Returns info for all users.     |
-| GET    | `/users/:userId`  | users          | Returns info for a single user. |
-| POST   | `/login`          | users          | Logs that user in.              |
-| POST   | `/users/register` | none           | Creates a new user.             |
-| PUT    | `/users`          | users          | Updates the current user.       |
-| DELETE | `/users`          | users          | Deletes the current user.       |
+| Method | Endpoint         | Access Control | Description                     |
+| ------ | ---------------- | -------------- | ------------------------------- |
+| GET    | `/users/org`     | users          | Returns info for all users.     |
+| GET    | `/users/:userId` | users          | Returns info for a single user. |
+| POST   | `/login`         | users          | Logs that user in.              |
+| POST   | `/register`      | none           | Creates a new user.             |
+| PUT    | `/users`         | users          | Updates the current user.       |
+| DELETE | `/users`         | users          | Deletes the current user.       |
 
 #### Workout Routes
 
