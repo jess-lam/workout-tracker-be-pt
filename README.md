@@ -4,7 +4,7 @@
 
 # API Documentation
 
-#### Backend delpoyed at [Heroku](https://dashboard.heroku.com/apps/frozen-hamlet-18508/deploy/github) <br>
+#### Backend deployed at [Heroku](https://dashboard.heroku.com/apps/frozen-hamlet-18508/deploy/github) <br>
 
 ## Getting started
 
@@ -54,6 +54,18 @@ All endpoints start with `/api`
 | POST   | `/diets`     | users          | Adds a food entry to currently logged in user     |
 | PUT    | `/diets/:id` | users          | Edits a food entry with the specified id number   |
 | DELETE | `/diets/:id` | users          | Deletes a food entry with the specified id number |
+
+#### Routine/Connector Routes
+
+| Method | Endpoint        | Access Control | Description                                         |
+| ------ | --------------- | -------------- | --------------------------------------------------- |
+| GET    | `/routines`     | users          | Gets all routines for logged in user                |
+| GET    | `/routines/:id` | users          | Gets routine of id for logged in user               |
+| POST   | `/routines`     | users          | Adds routine to currently logged in user            |
+| POST   | `/routines/:id` | users          | Adds workout to given routine of given id           |
+| PUT    | `/routines/:id` | users          | Edits a routine with given id                       |
+| DELETE | `/routines/:id` | users          | Deletes a routine with given id                     |
+| DELETE | `/routines/:id` | users          | Deletes a refrence to a workout id with routine id  |
 
 # Data Model
 
@@ -105,6 +117,30 @@ All endpoints start with `/api`
     meal_category:
     food_name:
     food_stats:
+  }
+
+```
+
+#### Routine
+
+---
+
+```
+  {
+    routine_tite: 
+    user_id: 
+  }
+
+```
+
+#### Connector
+
+---
+
+```
+  {
+    routines_id:
+    workout_id:
   }
 
 ```
