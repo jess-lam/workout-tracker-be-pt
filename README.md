@@ -40,6 +40,7 @@ All endpoints start with `/api`
 
 | Method | Endpoint        | Access Control | Description                                         |
 | ------ | --------------- | -------------- | --------------------------------------------------- |
+| GET    | `/workouts`     | users          | Gets all public workouts for any logged in user     |
 | GET    | `/workouts`     | users          | Gets all workouts for logged in user                |
 | POST   | `/workouts`     | users          | Adds workout to currently logged in user            |
 | PUT    | `/workouts/:id` | users          | Edits a workout that said user owns with given id   |
@@ -102,6 +103,7 @@ All endpoints start with `/api`
     workout_start_time:
     workout_end_time:
     workout_description:
+    workout_share:
     completed:
     user_id:
   }

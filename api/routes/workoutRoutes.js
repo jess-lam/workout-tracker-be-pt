@@ -5,6 +5,16 @@ const workoutMiddleware = require('../../validation/middleware/workout-middlewar
 //import model
 const workouts = require('../models/workoutModel');
 
+router.get('/', (req, res) => {
+    workouts.getPublicWorkouts()
+        .then(workout => {
+            res.status(200).json({ message: workout })
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Error retrieving workouts', err })
+        })
+})
+
 router.get('/', (req, res) =>{
     const id = req.userId;
     

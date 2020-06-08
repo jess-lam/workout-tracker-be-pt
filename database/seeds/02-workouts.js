@@ -22,7 +22,7 @@ exports.seed = function (knex, Promise) {
       workout_title: "Nathans leg 2 workout",
       workout_date: "2020-08-22",
       workout_length: "30m",
-      workout_share: false,
+      workout_share: true,
       completed: false,
       user_id: 1
     },

@@ -1,5 +1,10 @@
 const db = require('../../database/connection');
 
+function getPublicWorkouts() {
+    return db('workouts')
+        .where('workouts.workout_share', '=', true)
+}
+
 function getWorkoutsByUser(id) {
     return db('users')
         .join('workouts', 'users.id', '=', 'workouts.user_id')
@@ -41,6 +46,7 @@ function deleteWorkout(userId, id) {
 }
 
 module.exports = {
+    getPublicWorkouts,
     getWorkoutsByUser,
     getWorkoutById,
     addWorkout,
