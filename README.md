@@ -116,9 +116,18 @@ All endpoints start with `/api`
 
 ```
   {
-    meal_category:
-    food_name:
-    food_stats:
+    meal_date: string
+    meal_time: string
+    meal_category: string
+    food_name: string
+    food_quantity: decimal
+    food_measure: string
+    food_calories: decimal
+    food_fat: decimal
+    food_protein: decimal
+    food_carbs: decimal
+    food_fiber: decimal
+    meal_notes: text
   }
 
 ```
