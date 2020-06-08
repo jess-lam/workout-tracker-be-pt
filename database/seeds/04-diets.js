@@ -1,16 +1,3 @@
-// tbl.date('meal_date').notNullable();
-// tbl.time('meal_time', { precision: 4 }).notNullable();
-// tbl.string('meal_category').notNullable();
-// tbl.string('food_name').notNullable();
-// tbl.string('food_measure').notNullable();
-// tbl.decimal('food_quantity', null).notNullable();
-// tbl.decimal('food_calories', null).notNullable();
-// tbl.decimal('food_fat', null).notNullable();
-// tbl.decimal('food_protein', null).notNullable();
-// tbl.decimal('food_carbs', null).notNullable();
-// tbl.decimal('food_fiber', null).notNullable();
-// tbl.text('meal_notes');
-
 exports.seed = function (knex) {
   return knex('diets')
     .del()

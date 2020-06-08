@@ -4,9 +4,10 @@ const Diet = require('../models/dietModel');
 const restricted = require('../../validation/middleware/restricted-middlware');
 const router = express.Router();
 
-// Get a list of existing diet foods
-router.get('/', (req, res) => {
-  Diet.getAll()
+// Get a list of existing diet foods by user
+router.get('/', restricted, (req, res) => {
+  const id = req.userId
+  Diet.getAll(id)
     .then((diet) => {
       res.status(200).json(diet);
     })
