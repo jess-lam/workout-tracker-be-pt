@@ -1,3 +1,16 @@
+// tbl.date('meal_date').notNullable();
+// tbl.time('meal_time', { precision: 4 }).notNullable();
+// tbl.string('meal_category').notNullable();
+// tbl.string('food_name').notNullable();
+// tbl.string('food_measure').notNullable();
+// tbl.decimal('food_quantity', null).notNullable();
+// tbl.decimal('food_calories', null).notNullable();
+// tbl.decimal('food_fat', null).notNullable();
+// tbl.decimal('food_protein', null).notNullable();
+// tbl.decimal('food_carbs', null).notNullable();
+// tbl.decimal('food_fiber', null).notNullable();
+// tbl.text('meal_notes');
+
 exports.seed = function (knex) {
   return knex('diets')
     .del()
@@ -5,55 +18,114 @@ exports.seed = function (knex) {
       return knex('diets').insert([
         {
           user_id: 1,
-          food_name: '6 oz Ribeye Steak, grilled',
+          meal_date: '2020-06-08',
+          meal_time: '2:15 pm',
           meal_category: 'Lunch',
-          food_stats: '200 calories, 7g fat, 1g fiber, 33g protein, 1g carbs',
+          food_name: 'Ribeye Steak, grilled',
+          food_quantity: 6,
+          food_measure: 'ounces',
+          food_calories: 370,
+          food_fat: 33,
+          food_protein: 18,
+          food_carbs: 0,
+          food_fiber: 0          
         },
         {
           user_id: 1,
-          food_name: '1 cup carrots(12 baby carrots), raw',
+          meal_date: '2020-06-08',
+          meal_time: '2:15 pm',
           meal_category: 'Lunch',
-          food_stats: '25 calories, 0g fat, 1.5g fiber, 0.5g protein, 6g carbs',
+          food_name: 'Baby Carrots, raw',
+          food_quantity: 12,
+          food_calories: 25,
+          food_fat: 0,
+          food_protein: 0.5,
+          food_carbs: 6,
+          food_fiber: 1.5 
         },
         {
           user_id: 1,
-          food_name: '1 cup broccoli florets, raw',
+          meal_date: '2020-06-08',
+          meal_time: '2:15 pm',
           meal_category: 'Lunch',
-          food_stats:
-            '31 calories, 0.4g fat, 2.4g fiber, 2.5g protein, 6g carbs',
+          food_name: 'Broccoli florets, raw',
+          food_quantity: 6,
+          food_measure: 'ounces',
+          food_calories: 31,
+          food_fat: 0,
+          food_protein: 3,
+          food_carbs: 6,
+          food_fiber: 2
         },
         {
           user_id: 1,
-          food_name: '1 cup Plain Yogurt',
+          meal_date: '2020-06-08',
+          meal_time: '8:15 am',
           meal_category: 'Breakfast',
-          food_stats:
-            '149 calories, 8g fat, 0g fiber, 8.5g protein, 11.4g carbs',
+          food_name: 'Plain Yogurt',
+          food_quantity: 1,
+          food_measure: 'cup',
+          food_calories: 149,
+          food_fat: 8,
+          food_protein: 9,
+          food_carbs: 11,
+          food_fiber: 0
         },
         {
           user_id: 1,
-          food_name: '1/2 cup granola',
+          meal_date: '2020-06-08',
+          meal_time: '8:15 am',
           meal_category: 'Breakfast',
-          food_stats:
-            '195 calories, 2.9g fat, 3.5g fiber, 4.4g protein, 40.5g carbs',
+          food_name: 'Granola',
+          food_quantity: 0.5,
+          food_measure: 'cups',
+          food_calories: 195,
+          food_fat: 3,
+          food_protein: 4,
+          food_carbs: 41,
+          food_fiber: 4
         },
         {
           user_id: 1,
-          food_name: '3 cups lettuce mix salad',
+          meal_date: '2020-06-08',
+          meal_time: '6:30 pm',
           meal_category: 'Dinner',
-          food_stats: '27 calories, 0.4g fat, 2g fiber, 2.1g protein, 5g carbs',
+          food_name: 'Lettuce, mix salad',
+          food_quantity: 3,
+          food_measure: 'cups',
+          food_calories: 27,
+          food_fat: 0,
+          food_protein: 2,
+          food_carbs: 5,
+          food_fiber: 2
         },
         {
           user_id: 1,
-          food_name: '1 cup carrots(12 baby carrots), raw',
+          meal_date: '2020-06-08',
+          meal_time: '6:30 pm',
           meal_category: 'Dinner',
-          food_stats: '25 calories, 0g fat, 1.5g fiber, 0.5g protein, 6g carbs',
+          food_name: 'Baby Carrots',
+          food_quantity: 12,
+          food_calories: 25,
+          food_fat: 0,
+          food_protein: 1,
+          food_carbs: 6,
+          food_fiber: 2
         },
         {
           user_id: 1,
-          food_name: '2 tbsp salad dressing, ranch',
+          meal_date: '2020-06-08',
+          meal_time: '6:30 pm',
           meal_category: 'Dinner',
-          food_stats:
-            '129 calories, 13g fat, 0g fiber, 0.4g protein, 1.8g carbs',
+          food_name: 'Ranch Dressing',
+          food_quantity: 2,
+          food_measure: 'tbsp',
+          food_calories: 129,
+          food_fat: 13,
+          food_protein: 0,
+          food_carbs: 2,
+          food_fiber: 0,
+          meal_notes: "Trying out a new ranch salad dressing"
         },
       ]);
     });
