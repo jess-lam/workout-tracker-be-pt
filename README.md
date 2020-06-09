@@ -4,7 +4,7 @@
 
 # API Documentation
 
-#### Backend delpoyed at [Heroku](https://dashboard.heroku.com/apps/frozen-hamlet-18508/deploy/github) <br>
+#### Backend deployed at [Heroku](https://dashboard.heroku.com/apps/frozen-hamlet-18508/deploy/github) <br>
 
 ## Getting started
 
@@ -27,19 +27,20 @@ All endpoints start with `/api`
 
 #### User Routes
 
-| Method | Endpoint          | Access Control | Description                     |
-| ------ | ----------------- | -------------- | ------------------------------- |
-| GET    | `/users/org`      | users          | Returns info for all users.     |
-| GET    | `/users/:userId`  | users          | Returns info for a single user. |
-| POST   | `/login`          | users          | Logs that user in.              |
-| POST   | `/users/register` | none           | Creates a new user.             |
-| PUT    | `/users`          | users          | Updates the current user.       |
-| DELETE | `/users`          | users          | Deletes the current user.       |
+| Method | Endpoint         | Access Control | Description                     |
+| ------ | ---------------- | -------------- | ------------------------------- |
+| GET    | `/users/org`     | users          | Returns info for all users.     |
+| GET    | `/users/:userId` | users          | Returns info for a single user. |
+| POST   | `/login`         | users          | Logs that user in.              |
+| POST   | `/register`      | none           | Creates a new user.             |
+| PUT    | `/users`         | users          | Updates the current user.       |
+| DELETE | `/users`         | users          | Deletes the current user.       |
 
 #### Workout Routes
 
 | Method | Endpoint        | Access Control | Description                                         |
 | ------ | --------------- | -------------- | --------------------------------------------------- |
+| GET    | `/workouts`     | users          | Gets all public workouts for any logged in user     |
 | GET    | `/workouts`     | users          | Gets all workouts for logged in user                |
 | POST   | `/workouts`     | users          | Adds workout to currently logged in user            |
 | PUT    | `/workouts/:id` | users          | Edits a workout that said user owns with given id   |
@@ -47,13 +48,13 @@ All endpoints start with `/api`
 
 #### Diet/Food Entry Routes
 
-| Method | Endpoint     | Access Control | Description                                         |
-| ------ | ------------ | -------------- | --------------------------------------------------- |
-| GET    | `/diets`     | users          | Gets all food entries for logged in user            |
-| GET    | `/diets/:id` | users          | Gets a food entries with the specified id number    |
-| POST   | `/diets`     | users          | Adds a food entry to currently logged in user       |
-| PUT    | `/diets/:id` | users          | Edits a food entry with the specified id number     |
-| DELETE | `/diets/:id` | users          | Deletes a a food entry with the specified id number |
+| Method | Endpoint     | Access Control | Description                                       |
+| ------ | ------------ | -------------- | ------------------------------------------------- |
+| GET    | `/diets`     | users          | Gets all food entries for logged in user          |
+| GET    | `/diets/:id` | users          | Gets a food entry with the specified id number    |
+| POST   | `/diets`     | users          | Adds a food entry to currently logged in user     |
+| PUT    | `/diets/:id` | users          | Edits a food entry with the specified id number   |
+| DELETE | `/diets/:id` | users          | Deletes a food entry with the specified id number |
 
 #### Routine/Connector Routes
 
@@ -102,6 +103,7 @@ All endpoints start with `/api`
     workout_start_time:
     workout_end_time:
     workout_description:
+    workout_share:
     completed:
     user_id:
   }

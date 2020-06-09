@@ -4,6 +4,7 @@ exports.seed = function (knex, Promise) {
       workout_title: "Nathans ab workout",
       workout_date: "2020-05-22",
       workout_length: "30m",
+      workout_share: false,
       completed: false,
       user_id: 2
     },
@@ -12,6 +13,7 @@ exports.seed = function (knex, Promise) {
       workout_title: "Nathans Leg workout",
       workout_date: "2020-05-22",
       workout_length: "30m",
+      workout_share: false,
       completed: false,
       user_id: 2
     },
@@ -20,6 +22,7 @@ exports.seed = function (knex, Promise) {
       workout_title: "Nathans leg 2 workout",
       workout_date: "2020-08-22",
       workout_length: "30m",
+      workout_share: true,
       completed: false,
       user_id: 1
     },
@@ -28,6 +31,7 @@ exports.seed = function (knex, Promise) {
       workout_title: "Cory's bicep workout",
       workout_date: "2020-05-22",
       workout_length: "30m",
+      workout_share: false,
       completed: false,
       user_id: 3
     },
@@ -36,6 +40,7 @@ exports.seed = function (knex, Promise) {
       workout_title: "New workout2",
       workout_date: "2020-05-22",
       workout_length: "30m",
+      workout_share: false,
       completed: false,
       user_id: 1
     }
