@@ -41,7 +41,7 @@ All endpoints start with `/api`
 | Method | Endpoint        | Access Control | Description                                         |
 | ------ | --------------- | -------------- | --------------------------------------------------- |
 | GET    | `/workouts`     | users          | Gets all public workouts for any logged in user     |
-| GET    | `/workouts`     | users          | Gets all workouts for logged in user                |
+| GET    | `/workouts`     | users          | Gets all workouts for the logged in user            |
 | POST   | `/workouts`     | users          | Adds workout to currently logged in user            |
 | PUT    | `/workouts/:id` | users          | Edits a workout that said user owns with given id   |
 | DELETE | `/workouts/:id` | users          | Deletes a workout that said user owns with given id |
@@ -138,7 +138,7 @@ All endpoints start with `/api`
 
 ```
   {
-    routine_tite: 
+    routine_title: 
     user_id: 
   }
 
