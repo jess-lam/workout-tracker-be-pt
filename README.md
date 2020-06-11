@@ -41,7 +41,7 @@ All endpoints start with `/api`
 | Method | Endpoint        | Access Control | Description                                         |
 | ------ | --------------- | -------------- | --------------------------------------------------- |
 | GET    | `/workouts`     | users          | Gets all public workouts for any logged in user     |
-| GET    | `/workouts`     | users          | Gets all workouts for logged in user                |
+| GET    | `/workouts`     | users          | Gets all workouts for the logged in user            |
 | POST   | `/workouts`     | users          | Adds workout to currently logged in user            |
 | PUT    | `/workouts/:id` | users          | Edits a workout that said user owns with given id   |
 | DELETE | `/workouts/:id` | users          | Deletes a workout that said user owns with given id |
@@ -116,9 +116,18 @@ All endpoints start with `/api`
 
 ```
   {
-    meal_category:
-    food_name:
-    food_stats:
+    meal_date: string
+    meal_time: string
+    meal_category: string
+    food_name: string
+    food_quantity: decimal
+    food_measure: string
+    food_calories: decimal
+    food_fat: decimal
+    food_protein: decimal
+    food_carbs: decimal
+    food_fiber: decimal
+    meal_notes: text
   }
 
 ```
@@ -129,7 +138,7 @@ All endpoints start with `/api`
 
 ```
   {
-    routine_tite: 
+    routine_title: 
     user_id: 
   }
 

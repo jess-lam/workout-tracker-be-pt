@@ -69,9 +69,18 @@ exports.up = function (knex) {
         .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
-      tbl.text('food_name').notNullable();
-      tbl.text('meal_category').notNullable();
-      tbl.text('food_stats').notNullable();
+      tbl.string('meal_date').notNullable();
+      tbl.string('meal_time').notNullable();
+      tbl.string('meal_category').notNullable();
+      tbl.string('food_name').notNullable();
+      tbl.decimal('food_quantity', null).notNullable();
+      tbl.string('food_measure');
+      tbl.decimal('food_calories', null).notNullable();
+      tbl.decimal('food_fat', null).notNullable();
+      tbl.decimal('food_protein', null).notNullable();
+      tbl.decimal('food_carbs', null).notNullable();
+      tbl.decimal('food_fiber', null).notNullable();
+      tbl.text('meal_notes');
     })
     .createTable('following', (tbl) => {
       tbl.increments();
