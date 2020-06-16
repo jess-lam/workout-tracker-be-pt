@@ -1,7 +1,6 @@
 const validateRegistration = require('../register');
 
 module.exports = (req, res, next) =>{
-    console.log(req.body)
     const user = req.body
     const { error, isValid } = validateRegistration(user);
 
