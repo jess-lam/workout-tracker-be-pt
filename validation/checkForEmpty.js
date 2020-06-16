@@ -2,9 +2,9 @@ const ifEmpty = field => {
     try {
         let results = true;
         if( 
-            !field || 
-            isStringEmpty(field) || 
-            isObjEmpty(field)
+            field === undefined || field === null || 
+            (typeof field === "string" && field.trim().length === 0) || 
+            (typeof field === "object" && Object.keys(field).length === 0)
         )
         results = false;      
         return results;  
@@ -12,13 +12,5 @@ const ifEmpty = field => {
         return error;
     }
 };
-
-function isStringEmpty(str){
-    return typeof str === "string" && str.trim().length === 0
-}
-
-function isObjEmpty(obj){
-    return typeof obj === "object" && Object.keys(obj).length === 0;
-}
 
 module.exports = ifEmpty;

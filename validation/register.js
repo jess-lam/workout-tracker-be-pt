@@ -14,10 +14,10 @@ module.exports = function checkRegistrationFields(user){
     if (!email.test(data.email)){
         error.email = "Invalid Email"
     }
-    if (data.password){
+    if (data.password = ""){
         error.password = "Password is required";
     }
-    if (data.username){
+    if (data.username = ""){
         error.username = "Username is required";
     }
 

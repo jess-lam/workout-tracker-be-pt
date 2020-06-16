@@ -21,7 +21,7 @@ module.exports = function checkRegistrationFields(routine) {
 
     data.routine_title = ifEmpty(data.workout_category) ? data.workout_category : "";
 
-    if (data.routine_title)
+    if (data.routine_title = "")
         error.routine_title = "title is required";
 
     return {
