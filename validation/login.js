@@ -12,7 +12,7 @@ module.exports = function validateLoginInput(user){
     if (!email.test(data.email)){
         errors.email = "Invalid Email";
     }
-    if (data.password = ""){
+    if (data.password){
         errors.password = "No password provided"
     }
 
