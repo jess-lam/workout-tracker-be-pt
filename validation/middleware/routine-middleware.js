@@ -1,7 +1,6 @@
 const routineRegistration = require('../routine');
 
 module.exports = (req, res, next) =>{
-    console.log(req.body)
     const routine = req.body
     const { error, isValid } = routineRegistration(routine);
 

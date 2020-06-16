@@ -10,3 +10,7 @@ exclude_patterns:
   - "**/*.test.js"
   - "**/routes/"
   - "**/database/"
+similar-code:
+  enabled: false
+method-complexity:
+  enabled: false
