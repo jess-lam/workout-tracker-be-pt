@@ -7,7 +7,6 @@ const ifEmpty = field => {
         {
                 results = false;      
         }
-
         return results;  
     } catch(error){
         return error;
