@@ -8,7 +8,8 @@ module.exports = function checkRegistrationFields(workout) {
     //catches errors
     let error = {};
 
-    /*expected data 
+    /*
+        expected data 
         workout_category
         workout_title
         workout_date
