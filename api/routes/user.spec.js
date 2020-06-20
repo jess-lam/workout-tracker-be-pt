@@ -3,11 +3,12 @@ const db = require('../../database/connection.js');
 const auth = require('../../server.js');
 const User = require('../models/userModel.js');
 
-beforeEach(async () => {
-  await db('users').del();
-});
-
 describe('User', () => {
+
+  beforeAll(async () => {
+    return db.seed.run()
+  })
+
   describe('add()', () => {
     it('should add a new user', async () => {
       const registerRes = await request(auth).post('/api/register').send({
@@ -17,7 +18,7 @@ describe('User', () => {
       });
       expect(registerRes).toBeTruthy();
       const user = await db('users');
-      expect(user).toHaveLength(1);
+      expect(user).toHaveLength(4);
 
       const res = await request(auth)
         .post('/api/login')
