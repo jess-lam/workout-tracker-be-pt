@@ -1,3 +1,4 @@
+require("dotenv").config();
 const request = require('supertest');
 const db = require('../../database/connection.js');
 const auth = require('../../server.js');
