@@ -4,14 +4,26 @@ const db = require('../../database/connection.js');
 const auth = require('../../server.js');
 const Diet = require('../models/dietModel.js');
 
+beforeEach(async () => {
+    await db('diets').del();
+  });
 
 describe('Diet', () => {
 
-    beforeAll(async () => {
-        return db.seed.run()
-    })
-
     describe('add a diet entry', () => {
+
+      it('should return success (200)', async () => {
+        const res = await request(auth)
+        .post('/api/login')
+        .send({ email: 'egg@gmail.com', password: 'password' })
+
+        const token = res.body.token
+        const diets = await request(auth)
+            .get('/api/diets')
+            .set({ Authorization: token })
+            expect(diets.status).toBe(200)
+      })
+
       it('should add a new food entry', async () => {
         const dietRes = await request(auth).post('/api/diets').send([{
             user_id: 1,
@@ -29,18 +41,5 @@ describe('Diet', () => {
         }]);
         expect(dietRes).toBeTruthy()
         })
-
-      it('should return success (200)', async () => {
-        const res = await request(auth)
-        .post('/api/login')
-        .send({ email: 'egg@gmail.com', password: 'password' })
-
-        const token = res.body.token
-        console.log("token", token)
-        const diets = await request(auth)
-            .get('/api/diets')
-            .set({ Authorization: token })
-            expect(diets.status).toBe(200)
-      })
     })
 })
