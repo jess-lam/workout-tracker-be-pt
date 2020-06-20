@@ -1,31 +1,29 @@
-require("dotenv").config();
 const request = require('supertest');
 const db = require('../../database/connection.js');
 const auth = require('../../server.js');
 const Diet = require('../models/dietModel.js');
 
-beforeEach(async () => {
-    await db('diets').del();
-  });
-
 describe('Diet', () => {
+  beforeAll(() => {
+    return db.seed.run()
+  })
 
-    describe('add a diet entry', () => {
-
-      it('should return success (200)', async () => {
-        const res = await request(auth)
-        .post('/api/login')
-        .send({ email: 'egg@gmail.com', password: 'password' })
-
-        const token = res.body.token
-        const diets = await request(auth)
-            .get('/api/diets')
-            .set({ Authorization: token })
-            expect(diets.status).toBe(200)
+  describe('Retrieve diet entries', () => {
+    it('should return a 500 status if not logged in', () => {
+      return request(auth)
+        .get('/api/diets')
+        .then(response => {
+          expect(response.status).toBe(500)
+        })
       })
+    })
+  })
 
-      it('should add a new food entry', async () => {
-        const dietRes = await request(auth).post('/api/diets').send([{
+  describe('add a diet entry', () => {
+    it('should return a 500 status for new entry if not logged in', () => {
+      return request(auth)
+        .post('/api/diets')
+        .send({
             user_id: 1,
             meal_date: '2020-06-10',
             meal_time: '2:00 pm',
@@ -38,8 +36,11 @@ describe('Diet', () => {
             food_protein: 18,
             food_carbs: 0,
             food_fiber: 0
-        }]);
-        expect(dietRes).toBeTruthy()
         })
+        .then(response => {
+          expect(response.status).toBe(500)
+        })
+      })
     })
-})
+
+

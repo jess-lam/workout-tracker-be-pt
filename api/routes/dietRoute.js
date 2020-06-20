@@ -1,5 +1,4 @@
 const express = require('express');
-
 const Diet = require('../models/dietModel');
 const restricted = require('../../validation/middleware/restricted-middlware');
 const router = express.Router();
