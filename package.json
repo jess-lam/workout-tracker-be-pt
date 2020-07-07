@@ -19,7 +19,6 @@
     ],
     "testEnvironment": "node"
   },
-  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lambda-School-Labs/workout-tracker-be-pt7.git"

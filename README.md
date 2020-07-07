@@ -68,6 +68,17 @@ All endpoints start with `/api`
 | DELETE | `/routines/:id` | users          | Deletes a routine with given id                     |
 | DELETE | `/routines/:id` | users          | Deletes a refrence to a workout id with routine id  |
 
+#### Following
+
+| Method | Endpoint                      | Access Control | Description                                         |
+| ------ | ----------------------------- | -------------- | --------------------------------------------------- |
+| POST   | `/follow/:id`                 | users          | Adds the id give to logged in user follow list      |
+| DELETE | `/follow/:id`                 | users          | Removes the id given from logged in user follow list|
+| GET    | `/follow/following/:id`       | any            | Gets the list of people following said user         |
+| GET    | `/follow/following/number:id` | any            | Gets the count of people following said user        |
+| GET    | `/follow/followers`           | any            | Gets the list of people said user follows           |
+| GET    | `/follow/followers/number/:id`| any            | Gets the count of people said user follows          |
+
 # Data Model
 
 #### USERS

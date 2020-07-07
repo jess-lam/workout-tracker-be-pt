@@ -84,6 +84,7 @@ exports.up = function (knex) {
     })
     .createTable('following', (tbl) => {
       tbl.increments();
+      tbl.unique(['user_id', 'follower_id'])
       tbl
         .integer('user_id')
         .unsigned()
