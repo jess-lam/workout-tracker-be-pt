@@ -6,9 +6,17 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "test": "cross-env DB_ENV=testing jest --watch --detectOpenHandles"
+    "test": "cross-env DB_ENV=testing jest --watch --detectOpenHandles",
+    "coverage": "cross-env DB_ENV=testing jest --coverage --detectOpenHandles --forceExit || true"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/__tests__/**",
+      "!**/coverage/**"
+    ],
     "testEnvironment": "node"
   },
   "repository": {

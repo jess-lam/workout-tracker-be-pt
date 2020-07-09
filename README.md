@@ -38,13 +38,13 @@ All endpoints start with `/api`
 
 #### Workout Routes
 
-| Method | Endpoint        | Access Control | Description                                         |
-| ------ | --------------- | -------------- | --------------------------------------------------- |
-| GET    | `/workouts`     | users          | Gets all public workouts for any logged in user     |
-| GET    | `/workouts`     | users          | Gets all workouts for the logged in user            |
-| POST   | `/workouts`     | users          | Adds workout to currently logged in user            |
-| PUT    | `/workouts/:id` | users          | Edits a workout that said user owns with given id   |
-| DELETE | `/workouts/:id` | users          | Deletes a workout that said user owns with given id |
+| Method | Endpoint          | Access Control | Description                                         |
+| ------ | ---------------   | -------------- | --------------------------------------------------- |
+| GET    | `/workouts/public`| users          | Gets all public workouts for any logged in user     |
+| GET    | `/workouts`       | users          | Gets all workouts for the logged in user            |
+| POST   | `/workouts`       | users          | Adds workout to currently logged in user            |
+| PUT    | `/workouts/:id`   | users          | Edits a workout that said user owns with given id   |
+| DELETE | `/workouts/:id`   | users          | Deletes a workout that said user owns with given id |
 
 #### Diet/Food Entry Routes
 
@@ -68,6 +68,24 @@ All endpoints start with `/api`
 | DELETE | `/routines/:id` | users          | Deletes a routine with given id                     |
 | DELETE | `/routines/:id` | users          | Deletes a refrence to a workout id with routine id  |
 
+#### Following
+
+| Method | Endpoint                      | Access Control | Description                                         |
+| ------ | ----------------------------- | -------------- | --------------------------------------------------- |
+| POST   | `/follow/:id`                 | users          | Adds the id give to logged in user follow list      |
+| DELETE | `/follow/:id`                 | users          | Removes the id given from logged in user follow list|
+| GET    | `/follow/following/:id`       | any            | Gets the list of people following said user         |
+| GET    | `/follow/following/number:id` | any            | Gets the count of people following said user        |
+| GET    | `/follow/followers`           | any            | Gets the list of people said user follows           |
+| GET    | `/follow/followers/number/:id`| any            | Gets the count of people said user follows          |
+
+#### Routine/Connector Routes
+
+| Method | Endpoint        | Access Control | Description                                         |
+| ------ | --------------- | -------------- | --------------------------------------------------- |
+| POST   | `/likes/:id`    | users          | Posts a like for the given entity id                |
+| GET    | `/likes/:id`    | any            | Gets all users who liked given entity id            |
+| DELETE | `/likes/:id`    | users          | Removes a like for the given entity id              |
 # Data Model
 
 #### USERS

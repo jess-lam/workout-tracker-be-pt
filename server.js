@@ -17,6 +17,8 @@ const userRoutes = require('./api/routes/userRoutes');
 const dietRoute = require('./api/routes/dietRoute');
 const workoutRoutes = require('./api/routes/workoutRoutes');
 const routineRoutes = require('./api/routes/routineRoutes');
+const followRoutes = require('./api/routes/followRoute');
+const likeRoutes = require('./api/routes/likeRoute');
 const restricted = require('./validation/middleware/restricted-middlware');
 
 //set routes here
@@ -31,5 +33,7 @@ server.use('/api/users', restricted, userRoutes);
 server.use('/api/diets', restricted, dietRoute);
 server.use('/api/workouts', restricted, workoutRoutes);
 server.use('/api/routines', restricted, routineRoutes);
+server.use('/api/follow', followRoutes)
+server.use('/api/likes', likeRoutes)
 
 module.exports = server;
