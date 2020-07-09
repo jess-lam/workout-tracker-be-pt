@@ -32,7 +32,7 @@ exports.up = function (knex) {
       tbl.date('workout_date').notNullable();
       tbl.string('workout_length').notNullable();
       tbl.string('workout_description');
-      tbl.boolean('shareable').defaultTo(true);
+      tbl.boolean('workout_share').defaultTo(true);
       tbl.boolean('completed').defaultTo(false);
       tbl.integer('user_id')
         .unsigned()
@@ -267,6 +267,8 @@ exports.down = function (knex) {
     .dropTableIfExists('achieved')
     .dropTableIfExists('badges')
     .dropTableIfExists('following')
+    .dropTableIfExists('diet_connector')
+    .dropTableIfExists('meal_plan')
     .dropTableIfExists('diets')
     .dropTableIfExists('connector')
     .dropTableIfExists('routines')
