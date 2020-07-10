@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Get a list of all public food entries
 router.get('/public', (req, res) => { 
-  workouts.getAllPublic()
+  Diet.getAllPublic()
       .then(diet => {
           res.status(200).json(diet)
       })
@@ -18,7 +18,7 @@ router.get('/public', (req, res) => {
 // Get a list of existing diet foods by user
 router.get('/', (req, res) => {
   const id = req.userId
-  
+
   Diet.getAll(id)
     .then((diet) => {
       res.status(200).json(diet);
