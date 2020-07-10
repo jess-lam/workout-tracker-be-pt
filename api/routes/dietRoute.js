@@ -1,10 +1,10 @@
 const express = require('express');
 const Diet = require('../models/dietModel');
-const restricted = require('../../validation/middleware/restricted-middlware');
+const dietMiddleware = require('../../validation/middleware/diet-middleware');
 const router = express.Router();
 
 // Get a list of existing diet foods by user
-router.get('/', restricted, (req, res) => {
+router.get('/', (req, res) => {
   const id = req.userId
   Diet.getAll(id)
     .then((diet) => {
@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Add a diet food entry
-router.post('/', restricted, (req, res) => {
+router.post('/', dietMiddleware, (req, res) => {
   const dietData = req.body;
   dietData.user_id = req.userId;
 
@@ -49,7 +49,7 @@ router.post('/', restricted, (req, res) => {
 });
 
 // Update a diet food entry
-router.put('/:id', restricted, (req, res) => {
+router.put('/:id', (req, res) => {
   const { id } = req.params;
   const changes = req.body;
   changes.user_id = req.userId;
@@ -70,7 +70,7 @@ router.put('/:id', restricted, (req, res) => {
 });
 
 // Delete a diet food entry
-router.delete('/:id', restricted, (req, res) => {
+router.delete('/:id', (req, res) => {
   const { id } = req.params;
 
   Diet.remove(id)

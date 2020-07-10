@@ -88,14 +88,6 @@ exports.up = function (knex) {
     })
     .createTable('diets', (tbl) => {
       tbl.increments();
-      tbl
-        .integer('user_id')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('users')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
       tbl.string('meal_date').notNullable();
       tbl.string('meal_time').notNullable();
       tbl.string('meal_category').notNullable();
@@ -108,6 +100,14 @@ exports.up = function (knex) {
       tbl.decimal('food_carbs', null).notNullable();
       tbl.decimal('food_fiber', null).notNullable();
       tbl.text('meal_notes');
+      tbl.boolean('shareable').defaultTo(true);
+      tbl.integer('user_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
       tbl.bigInteger('entity_id')
         .unsigned()
         .notNullable()
@@ -115,6 +115,42 @@ exports.up = function (knex) {
         .inTable('entity')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
+    })
+    .createTable('mealplans', (tbl) => {
+      tbl.increments();
+      tbl.string('mealplan_title').notNullable();
+      tbl.integer('user_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      tbl.bigInteger('entity_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('entity')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
+      tbl.boolean('shareable').defaultTo(true);
+    })
+    .createTable('dietmealbridge', (tbl) => {
+      tbl.integer('mealplans_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('mealplans')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      tbl.integer('diets_id')
+        .unsigned()
+        .notNullable()
+        .unique()
+        .references('id')
+        .inTable('diets')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
     })
     .createTable('following', (tbl) => {
       tbl.increments();
@@ -230,6 +266,8 @@ exports.down = function (knex) {
     .dropTableIfExists('achieved')
     .dropTableIfExists('badges')
     .dropTableIfExists('following')
+    .dropTableIfExists('dietmealbridge')
+    .dropTableIfExists('mealplans')
     .dropTableIfExists('diets')
     .dropTableIfExists('connector')
     .dropTableIfExists('routines')
