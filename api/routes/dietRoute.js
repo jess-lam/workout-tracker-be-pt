@@ -3,9 +3,22 @@ const Diet = require('../models/dietModel');
 const dietMiddleware = require('../../validation/middleware/diet-middleware');
 const router = express.Router();
 
+
+// Get a list of all public food entries
+router.get('/public', (req, res) => { 
+  workouts.getAllPublic()
+      .then(diet => {
+          res.status(200).json(diet)
+      })
+      .catch(err => {
+          res.status(500).json({ message: 'Error retrieving diets list', err })
+      })
+})
+
 // Get a list of existing diet foods by user
 router.get('/', (req, res) => {
   const id = req.userId
+  
   Diet.getAll(id)
     .then((diet) => {
       res.status(200).json(diet);
