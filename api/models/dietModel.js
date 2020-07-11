@@ -3,6 +3,7 @@ const db = require('../../database/connection');
 module.exports = {
   add,
   findById,
+  getAllPublic,
   getAll,
   update,
   remove,
@@ -15,6 +16,11 @@ async function add(diet) {
 
 function findById(id) {
   return db('diets').where({ id }).first();
+}
+
+function getAllPublic() {
+  return db('diets')
+      .where('diets.shareable', true)
 }
 
 function getAll(id) {

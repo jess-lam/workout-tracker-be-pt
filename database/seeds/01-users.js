@@ -26,7 +26,12 @@ exports.seed = function(knex, Promise) {
         affiliate: false,
         verified: false,
         xp: 0
-        } 
+        },
+        { username: 'giovani', email: 'giovani@gmail.com', password: encrypt('password'), affiliate: false, verified: false, xp: 0 },
+        { username: 'leza', email: 'leza@gmail.com', password: encrypt('password'), affiliate: false, verified: false, xp: 0 }, 
+        { username: 'jessica', email: 'jessica@gmail.com', password: encrypt('password'), affiliate: false, verified: false, xp: 0 },
+        { username: 'anthony', email: 'anthony@gmail.com', password: encrypt('password'), affiliate: false, verified: false, xp: 0 },
+        { username: 'steven', email: 'steven@gmail.com', password: encrypt('password'), affiliate: false, verified: false, xp: 0 }
       ]);
    };
 

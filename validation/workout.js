@@ -12,7 +12,7 @@ module.exports = function checkRegistrationFields(workout) {
         expected data 
         workout_category
         workout_title
-        workout_date
+        workout_date 
         workout_start_time
         workout_end_time
         workout_description
