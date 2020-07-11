@@ -1,52 +1,50 @@
 const db = require('../../database/connection');
 
 module.exports = {
-    getAll,
+    getMealplans,
     getMealplan,
-    // addMealplan,
-    // addDietToMealplan,
-    // editMealplan,
-    // deleteMealplan,
-    // deleteDietInMealplan
-}
+    addMealplan,
+    addFoodToMealplan,
+    updateMealplan,
+    removeMealplan,
+    removeFoodInMealplan
+};
+
 async function getMealplans(user_id){
-    const mealplans = await db('meal_plan')
-        .where('meal_plan.user_id', user_id)
-    // returns a promise that way routines[index].workouts isnt undefined in the return statement later then
-    // and maps through the routines array to get every workout associated with said routines and
-    // then sets routines index to the array of workouts 
-    await Promise.all(mealplans.map(async (item, index) => { 
-            mealplans[index].diets = await db('meal_plan')
-                .where('meal_plan.user_id', item.user_id)
-                .where('meal_plan.id', item.id)
-                .innerJoin('diet_connector', 'diet_connector.meal_plan_id', 'meal_plan.id' )
-                .innerJoin('diets', 'diets.id', 'diet_connector.diets_id')
-                .select(
-                    'diets.id',
-                    'diets.meal_date',
-                    'diets.meal_time',
-                    'diets.meal_category',
-                    'diets.food_name',
-                    'diets.food_quantity',
-                    'diets.food_measure',
-                    'diets.food_calories',
-                    'diets.food_fat',
-                    'diets.food_protein',
-                    'diets.food_carbs',
-                    'diets.food_fiber',
-                    'diets.meal_notes'
-                )
-        }));
+    const mealplans = await db('mealplans')
+        .where('mealplans_id', user_id)
     
+    await Promise.all(mealplans.map(async(item, index) => {
+        mealplans[index].meal = await db('mealplans')
+            .where('mealplans.user_id', item.user_id)
+            .where('mealplans.id', item.id)
+            .innerJoin('dietmealbridge', 'dietmealbridge.mealplans_id', 'mealplans.id')
+            .innerJoin('diets', 'diets.id', 'dietmealbridge.diets_id')
+            .select(
+                'diets.id',
+                'diets.meal_date',
+                'diets.meal_time',
+                'diets.meal_category',
+                'diets.food_name',
+                'diets.food_quantity',
+                'diets.food_measure',
+                'diets.food_calories',
+                'diets.food_fat',
+                'diets.foot_protein',
+                'diets.food_carbs',
+                'diets.food_fiber',
+                'diets.meal_notes'
+            )
+    }))
     return {...mealplans}
 }
 
-async function getMealplan(id, user_id){
-    const diets = await db('meal_plan')
-        .where('meal_plan.user_id', user_id)
-        .where('meal_plan.id', id)
-        .innerJoin('diet_connector', 'diet_connector.meal_plan_id', 'meal_plan.id' )
-        .innerJoin('diets', 'diets.id', 'diet_connector.diets_id')
+async function getMealplan(id, user_id) {
+    const meals = await db('mealplans')
+        .where('mealplans.user_id', user_id)
+        .where('mealplans.id', id)
+        .innerJoin('dietmealbridge', 'dietmealbridge.mealplans_id', 'mealplans.id')
+        .innerJoin('diets', 'diets.id', 'dietmealbridge.diets_id')
         .select(
             'diets.id',
             'diets.meal_date',
@@ -62,51 +60,63 @@ async function getMealplan(id, user_id){
             'diets.food_fiber',
             'diets.meal_notes'
         )
+    const mealplan = {}
 
-    const mealplan = {};
-    
-    const mealplan_title = await db('meal_plan')
-        .where('meal_plan.user_id', user_id)
-        .where('meal_plan.id', id)
-        .select('meal_plan.meal_plan_title')
+    const mealplan_title = await db('mealplans')
+            .where('mealplans.user_id', user_id)
+            .where('mealplans.id', id)
+            .select('mealplans.mealplan_title')
 
-    mealplan.title = mealplan_title[0].mealplan_title
-    
-    mealplan.diets = diets;
+        mealplan.title = mealplan_title[0].mealplan_title
+        mealplan.meals = meals
 
-    return mealplan;
+        return mealplan
 }
 
-// async function addRoutine(routine){
-//     const [entity] = await db('entity').insert({user_id: routine.user_id}, 'id');
-//     const [id] = await db('routines').insert({...routine, entity_id: entity}, 'id')
+async function addMealplan(mealplan) {
+    const [entity] = await db('entity')
+        .insert({ user_id: mealplan.user_id }, 'id')
+    const [id] = await db('mealplans')
+        .insert({ ...mealplan, entity_id: entity }, 'id')
 
-//     return db('routines').where('routines.id', '=', id);
-// }
+    return db('mealplans')
+        .where('mealplans.id', id)
+}
 
-// async function addWorkoutToRoutine(connection, user_id){
-//     await db('connector').insert(connection)
-    
-//     return getRoutine(connection.routines_id, user_id);
-// }
+async function addFoodToMealplan(dietmealbridge, user_id) {
+    await db('dietmealbridge')
+        .insert(dietmealbridge)
 
-// async function editRoutine(id, routine){
-//     await db('routines').where('routines.user_id', '=', routine.user_id).where('routines.id', '=', id).update(routine)
+    return getMealplan(dietmealbridge.mealplans_id, user_id)
+}
 
-//     return db('routines').where('routines.id', '=', id);
-// }
+async function updateMealplan(id, mealplan) {
+    await db('mealplans')
+        .where('mealplans.user_id', mealplan.user_id)
+        .where('mealplans.id', id)
+        .update(mealplan)
+}
 
-// function deleteRoutine(id, user_id){
-//     return db('routines').where('routines.id', '=', id).where('routines.user_id', '=', user_id).del();
-// }
+function removeMealplan(id, user_id) {
+    return db('mealplans')
+        .where('mealplans.id', id)
+        .where('mealplans.user_id', user_id)
+        .del()
 
-// async function deleteWorkoutInRoutine(id, user_id, workout_id){
-//     const isvalid = await db('routines').where('routines.user_id', '=', user_id).where('routines.id', '=', id)
-    
-//     if(isvalid[0]){
-//         return db('connector').where('connector.routines_id', '=', id).where('connector.workout_id', '=', workout_id).del()
-//     } else {
-//         return "not valid user id for specific workout"
-//     }
-// }
+}
+
+async function removeFoodInMealplan(id, user_id, diets_id) {
+    const isvalid = await db('mealplans')
+        .where('mealplans.user_id', user_id)
+        .where('mealplans.id', id)
+
+        if(isvalid[0]) {
+            return db('dietmealbridge')
+                .where('dietmealbridge.mealplans_id', id)
+                .where('dietmealbridge.diets_id', diets_id)
+                .del()
+        } else {
+            return "Not a valid user"
+        }
+}
 

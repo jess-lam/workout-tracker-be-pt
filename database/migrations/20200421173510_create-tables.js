@@ -101,25 +101,6 @@ exports.up = function (knex) {
       tbl.decimal('food_fiber', null).notNullable();
       tbl.text('meal_notes');
       tbl.boolean('shareable').defaultTo(true);
-      tbl
-        .integer('user_id')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('users')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-      tbl.bigInteger('entity_id')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('entity')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE')
-    })
-    .createTable('meal_plan', (tbl) => {
-      tbl.increments();
-      tbl.string('meal_plan_title').notNullable();
       tbl.integer('user_id')
         .unsigned()
         .notNullable()
@@ -136,20 +117,39 @@ exports.up = function (knex) {
         .onDelete('CASCADE')
       tbl.boolean('shareable').defaultTo(true);
     })
-    .createTable('diet_connector', (tbl) => {
-      tbl.integer('diet_id')
+    .createTable('mealplans', (tbl) => {
+      tbl.increments();
+      tbl.string('mealplan_title').notNullable();
+      tbl.integer('user_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('diets')
+        .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
-      tbl.integer('meal_plan_id')
+      tbl.bigInteger('entity_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('entity')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
+      tbl.boolean('shareable').defaultTo(true);
+    })
+    .createTable('dietmealbridge', (tbl) => {
+      tbl.integer('mealplans_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('mealplans')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      tbl.integer('diets_id')
         .unsigned()
         .notNullable()
         .unique()
         .references('id')
-        .inTable('meal_plan')
+        .inTable('diets')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
     })
@@ -236,9 +236,9 @@ exports.up = function (knex) {
         .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
+      tbl.timestamp('created_at').defaultTo(knex.fn.now());
     })
     .createTable('comments', (tbl) => {
-      tbl.unique(['entity_id', 'user_id']);
       tbl
         .integer('entity_id')
         .unsigned()
@@ -255,7 +255,16 @@ exports.up = function (knex) {
         .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
+      tbl
+        .integer('this_entity_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('entity')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
       tbl.text('comment_data').notNullable();
+      tbl.timestamp('created_at').defaultTo(knex.fn.now());
     });
 };
 
@@ -267,8 +276,8 @@ exports.down = function (knex) {
     .dropTableIfExists('achieved')
     .dropTableIfExists('badges')
     .dropTableIfExists('following')
-    .dropTableIfExists('diet_connector')
-    .dropTableIfExists('meal_plan')
+    .dropTableIfExists('dietmealbridge')
+    .dropTableIfExists('mealplans')
     .dropTableIfExists('diets')
     .dropTableIfExists('connector')
     .dropTableIfExists('routines')

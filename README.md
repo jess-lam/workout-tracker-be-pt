@@ -48,13 +48,26 @@ All endpoints start with `/api`
 
 #### Diet/Food Entry Routes
 
-| Method | Endpoint     | Access Control | Description                                       |
-| ------ | ------------ | -------------- | ------------------------------------------------- |
-| GET    | `/diets`     | users          | Gets all food entries for logged in user          |
-| GET    | `/diets/:id` | users          | Gets a food entry with the specified id number    |
-| POST   | `/diets`     | users          | Adds a food entry to currently logged in user     |
-| PUT    | `/diets/:id` | users          | Edits a food entry with the specified id number   |
-| DELETE | `/diets/:id` | users          | Deletes a food entry with the specified id number |
+| Method | Endpoint       | Access Control | Description                                             |
+| ------ | -------------- | -------------- | ------------------------------------------------------- |
+| GET    | `/diets/public`| users          | Gets all public food entries -Note: all default to true |
+| GET    | `/diets`       | users          | Gets all food entries for the logged in user            |
+| GET    | `/diets/:id`   | users          | Gets a food entry with the specified id number          |
+| POST   | `/diets`       | users          | Adds a food entry to currently logged in user           |
+| PUT    | `/diets/:id`   | users          | Edits a food entry with the specified id number         |
+| DELETE | `/diets/:id`   | users          | Deletes a food entry with the specified id number       |
+
+#### Meal Plan Routes
+
+| Method | Endpoint        | Access Control | Description                                         |
+| ------ | --------------- | -------------- | --------------------------------------------------- |
+| GET    | `/mealplan`     | users          | Gets all meal plans for logged in user              |
+| GET    | `/mealplan/:id` | users          | Gets meal plan with id for logged in user           |
+| POST   | `/mealplan`     | users          | Adds a meal plan to currently logged in user        |
+| POST   | `/mealplan/:id` | users          | Adds food entry to given meal plan with given id    |
+| PUT    | `/mealplan/:id` | users          | Updates a meal plan with the given id               |
+| DELETE | `/mealplan/:id` | users          | Deletes a meal plan with the given id               |
+| DELETE | `/mealplan/:id` | users          | Deletes a food entry from a meal plan id            |
 
 #### Routine/Connector Routes
 
@@ -79,13 +92,24 @@ All endpoints start with `/api`
 | GET    | `/follow/followers`           | any            | Gets the list of people said user follows           |
 | GET    | `/follow/followers/number/:id`| any            | Gets the count of people said user follows          |
 
-#### Routine/Connector Routes
+#### Likes
 
-| Method | Endpoint        | Access Control | Description                                         |
-| ------ | --------------- | -------------- | --------------------------------------------------- |
-| POST   | `/likes/:id`    | users          | Posts a like for the given entity id                |
-| GET    | `/likes/:id`    | any            | Gets all users who liked given entity id            |
-| DELETE | `/likes/:id`    | users          | Removes a like for the given entity id              |
+| Method | Endpoint          | Access Control | Description                                         |
+| ------ | ----------------- | -------------- | --------------------------------------------------- |
+| POST   | `/likes/:id`      | users          | Posts a like for the given entity id                |
+| GET    | `/likes/post/:id` | any            | Gets all users who liked given entity id            |
+| GET    | `/likes/user/:id` | any            | Gets all likes for specified user                   |
+| DELETE | `/likes/:id`      | users          | Removes a like for the given entity id              |
+
+#### Comments
+
+| Method | Endpoint             | Access Control | Description                                         |
+| ------ | -------------------- | -------------- | --------------------------------------------------- |
+| POST   | `/comments/:id`      | users          | Posts a comment for the given entity id             |
+| GET    | `/comments/get/:id`  | any            | Gets all comments under given entity_id             |
+| GET    | `/comments/user/:id` | any            | Gets all comments for  given user                   |
+| DELETE | `/comments/:id`      | users          | Removes a comment for the given entity id           |
+
 # Data Model
 
 #### USERS
@@ -146,6 +170,16 @@ All endpoints start with `/api`
     food_carbs: decimal
     food_fiber: decimal
     meal_notes: text
+  }
+
+```
+
+#### Meal Plan
+
+```
+  {
+    mealplan_title: string
+    user_id: integer
   }
 
 ```
