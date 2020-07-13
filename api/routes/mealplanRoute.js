@@ -4,16 +4,6 @@ const router = express.Router()
 const Mealplans = require('../models/mealplanModel')
 const mealplanMiddleware = require('../../validation/middleware/mealplan-middleware')
 
-// module.exports = {
-//     getMealplans,
-//     getMealplan,
-//     addMealplan,
-//     addFoodToMealplan,
-//     updateMealplan,
-//     removeMealplan,
-//     removeFoodInMealplan
-// };
-
 router.get('/', (req, res) => {
     const id = req.userId
 

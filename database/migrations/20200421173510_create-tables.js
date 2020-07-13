@@ -115,6 +115,7 @@ exports.up = function (knex) {
         .inTable('entity')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
+      tbl.boolean('shareable').defaultTo(true);
     })
     .createTable('mealplans', (tbl) => {
       tbl.increments();

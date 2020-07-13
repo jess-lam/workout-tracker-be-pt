@@ -55,7 +55,7 @@ async function getMealplan(id, user_id) {
             'diets.food_measure',
             'diets.food_calories',
             'diets.food_fat',
-            'diets.foot_protein',
+            'diets.food_protein',
             'diets.food_carbs',
             'diets.food_fiber',
             'diets.meal_notes'
