@@ -41,7 +41,7 @@ router.put('/', (req, res) => {
     Users.updateUser(user_id, updatedUser)
         .then(user => {
             if(user) {
-                res.status(200).json(user);
+                res.status(200).json({ message: "Successfully updated User info", updatedUser });
             } else {
                 res.status(404).json({ message: 'Could not find user with given id'});
             }
