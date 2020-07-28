@@ -13,7 +13,7 @@ async function getPublic(){
     const list = [];
     await Promise.all((await db('entity').orderBy('entity.created_at', 'desc')).map(async entity =>{
         let [user] = await db('users').where('id', '=', entity.user_id).select('users.id', 'users.username', 'users.image');
-        let likes = getNumberOfLikes(entity.id);
+        let likes = await getNumberOfLikes(entity.id);
         switch(entity.type){
             case types.WORKOUT: 
                     let [workout] = await db('workouts').where('workouts.entity_id', '=', entity.id).where('workouts.workout_share', '=', true);
