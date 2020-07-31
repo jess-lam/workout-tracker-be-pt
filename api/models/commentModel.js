@@ -19,9 +19,11 @@ function getNumberOfComments(master_entity){
 
 async function getAllByEntityId(master_entity){
     const [data] = await db('entity').where({ id: master_entity}) //gets the entity of from the master entity id incase its not a comment
+    const [user] = await db('users').where({id: data.user_id}).select('users.id', 'users.username', 'users.image');
     const [comment_data] = await db('comments').where({this_entity_id: master_entity}) //if its a comment we need to get the comment data
     comment_data != undefined ? data.comment = comment_data.comment_data : ''; //add the comment data to the inital data structure if it is indeed a comment
     data.this_entity_id = master_entity;
+    data.user = user;
     const comments = []
     comments.push(data); // push it to an array we will use later for the recursive function 
     if(data != undefined || null) {
@@ -34,6 +36,8 @@ async function getAllByEntityId(master_entity){
 
 async function recursiveDownComments(node, index, comments){ //accepts the parent node and the index of the given step of the array as well as passing the comment array
     const data = await db('comments').where({ entity_id: node.this_entity_id })
+    const [user] = await db('users').where({id: node.user_id}).select('users.id', 'users.username', 'users.image');
+    comments[index].user = user;
     comments[index].comments = data; // sets the data of the comment to the index of our current recursion 
     if(data != undefined || null) { //if the data isnt undefined then we need to iterate through the array of information
         await Promise.all(comments[index].comments.map(async (node_n, index_n) => { //awaits the promise of the map of a recursive function 
