@@ -90,7 +90,7 @@ router.delete('/:id', (req, res) =>{
         })
 })
 
-router.delete('/workout/:id', (req, res) =>{
+router.post('/workout/:id', (req, res) =>{
     const {workout_id} = req.body;
     const user_id = req.userId;
     const id = req.params.id
