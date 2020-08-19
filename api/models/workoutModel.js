@@ -41,10 +41,12 @@ async function editWorkout(workout, id) {
     return db('workouts').where('workouts.id', '=', id)
 }
 
-function deleteWorkout(userId, id) {
-    return db('workouts').where('workouts.id', '=', id)
-        .where('workouts.user_id', '=', userId)
-        .del()
+async function deleteWorkout(userId, id) {
+    const [workout] = db('workouts').where('workouts.id', '=', id)
+    .where('workouts.user_id', '=', userId);
+
+    return db('entity').where('id', '=', workout.entity_id).del();
+
 }
 
 module.exports = {
