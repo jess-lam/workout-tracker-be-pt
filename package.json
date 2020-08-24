@@ -7,7 +7,7 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "test": "cross-env DB_ENV=testing jest --watch --detectOpenHandles",
-    "coverage": "CI=true cross-env DB_ENV=testing jest --coverage --detectOpenHandles --forceExit || true"
+    "coverage": "CI=true cross-env DB_ENV=testing npx jest --coverage --detectOpenHandles --forceExit"
   },
   "jest": {
     "collectCoverageFrom": [
