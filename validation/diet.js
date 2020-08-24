@@ -15,6 +15,7 @@ module.exports = function checkRegistrationFields(diet) {
     data.meal_category = ifEmpty(data.meal_category) ? data.meal_category : "";
     data.food_name = ifEmpty(data.food_name) ? data.food_name : "";
     data.meal_date = ifEmpty(data.meal_date) ? data.meal_date : "";
+    data.meal_time = ifEmpty(data.meal_time) ? data.meal_time : "";
     data.food_quantity = ifEmpty(data.food_quantity) ? data.food_quantity : "";
     data.food_calories = ifEmpty(data.food_calories) ? data.food_calories : "";
     data.food_fat = ifEmpty(data.food_fat) ? data.food_fat : "";
@@ -28,6 +29,8 @@ module.exports = function checkRegistrationFields(diet) {
         error.food_name = "A food name is required"
     if (!checkDate.test(data.meal_date))
         error.meal_date = "A valid date is required"
+    if (!checkValidTime.test(data.meal_time))
+        error.meal_time = "A valid time is required"
     if (data.food_quantity = "")
         error.food_quantity = "A valid quantity is required"
     if (data.food_calories = "")
