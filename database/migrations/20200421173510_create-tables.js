@@ -91,8 +91,8 @@ exports.up = function (knex) {
     })
     .createTable('diets', (tbl) => {
       tbl.increments();
-      tbl.string('meal_date').notNullable();
-      tbl.string('meal_time').notNullable();
+      tbl.date('meal_date').notNullable();
+      tbl.time('meal_time').notNullable();
       tbl.string('meal_category').notNullable();
       tbl.string('food_name').notNullable();
       tbl.decimal('food_quantity', null).notNullable();
