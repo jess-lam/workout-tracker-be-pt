@@ -17,23 +17,40 @@ async function getPublic(){
         switch(entity.type){
             case types.WORKOUT: 
                     let [workout] = await db('workouts').where('workouts.entity_id', '=', entity.id).where('workouts.workout_share', '=', true);
-                    workout = {...workout, type: types.WORKOUT, user: user, likes: likes}
-                    list.push(workout);
+                    if(workout === null || workout === undefined){
+                        return;
+                    }else{
+                        workout = {...workout, type: types.WORKOUT, user: user, likes: likes}
+                        list.push(workout);
+                    }
                 break;
             case types.ROUTINE: 
                     let [routine] = await db('routines').where('routines.entity_id', '=', entity.id).where('routines.shareable', '=', true);
-                    routine = {...routine, type: types.ROUTINE, user: user, likes: likes}
-                    list.push(routine);
+                    if(routine === null || routine === undefined){
+                        return;
+                    }else{
+                        routine = {...routine, type: types.ROUTINE, user: user, likes: likes}
+                        list.push(routine);
+                    }
                 break;
             case types.DIET: 
                     let [diet] = await db('diets').where('diets.entity_id', '=', entity.id).where('diets.shareable', '=', true);
-                    diet = {...diet, type: types.DIET, user: user, likes: likes} 
-                    list.push(diet);
+                    if(diet === null || diet === undefined){
+                        return;
+                    }else{
+                        diet = {...diet, type: types.DIET, user: user, likes: likes} 
+                        list.push(diet);
+                    }
                 break;
             case types.MEALPLAN: 
                     let [mealplan] = await db('mealplans').where('mealplans.entity_id', '=', entity.id).where('mealplans.shareable', '=', true);
-                    mealplan = {...mealplan, type: types.MEALPLAN, user: user, likes: likes}
-                    list.push(mealplan);
+                    if(mealplan === null || mealplan === undefined){
+                        return;
+                    }else{
+                        mealplan = {...mealplan, type: types.MEALPLAN, user: user, likes: likes}
+                        list.push(mealplan);
+                    }
+                    
                 break;
             case types.COMMENT:
 
