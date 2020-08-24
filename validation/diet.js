@@ -1,6 +1,6 @@
 const {
     checkDate,
-    checkTime
+    checkValidTime
 } = require('./regex');
 const ifEmpty = require('./checkForEmpty');
 
