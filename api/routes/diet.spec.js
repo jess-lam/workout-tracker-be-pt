@@ -15,7 +15,7 @@ describe('Diet', () => {
         .post('/api/login')
         .send({username: 'Evelyn', email: 'egg@gmail.com', password: 'password'})
         .then(response => {
-          const token = req.body.token
+          const token = response.body.token
           expect(response.body.token).toBe(token)
         })
     })
