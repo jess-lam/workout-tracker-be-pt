@@ -21,7 +21,7 @@ module.exports = {
     // collectCoverage: true,
   
     // An array of glob patterns indicating a set of files for which coverage information should be collected
-    "collectCoverageFrom": [
+    collectCoverageFrom: [
         "**/*.{js,jsx}",
         "!package.json",
         "!*.md",
@@ -39,9 +39,7 @@ module.exports = {
     // ],
   
     // A list of reporter names that Jest uses when writing coverage reports
-    coverageReporters: [
-      "lcov",
-    ],
+    coverageReporters: ["lcov"],
   
     // An object that configures minimum threshold enforcement for coverage results
     // coverageThreshold: undefined,

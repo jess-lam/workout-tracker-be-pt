@@ -49,6 +49,7 @@
             DB_DATABASE_UR: ${{secrets.DB_DABABASE_URL}}
             CI: true
             NODE_ENV: test 
+            DB_ENV: testing 
           with:
             # Run our `coverage` script in our `package.json`
             coverageCommand: npm run coverage
