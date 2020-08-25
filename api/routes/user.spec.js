@@ -3,6 +3,7 @@ const db = require('../../database/connection.js');
 const auth = require('../../server.js');
 const User = require('../models/userModel.js');
 
+let token;
 
 describe('User', () => {
   beforeAll(() => {
@@ -33,6 +34,7 @@ describe('User', () => {
         expect(response.status).toBe(500)
       })
     })
+  })
 
   describe('Login a user', () => {
     it('should return a 200 success status', () => {
@@ -43,6 +45,7 @@ describe('User', () => {
         password: "password"
       })
       .then(response => {
+        token = response.body.token
         expect(response.status).toBe(200)
       })
     })
@@ -56,9 +59,27 @@ describe('User', () => {
       .then(response => {
         expect(response.status).toBe(401)
       })
-      
+    })
+  })
+
+  describe('User list', () => {
+    it('should return a 200 status when retrieving a user list if logged in', () =>{
+      return request(auth)
+      .get('/api/users/org')
+      .set('Authorization', token)
+      .then(response => {
+        expect(response.status).toBe(200)
+      })
+    })
+    it('should return a 500 status when not logged in and trying to retrieve a user list', () => {
+      return request(auth)
+        .get('/api/users/org')
+        .then(response => {
+          expect(response.status).toBe(500)
+        })
     })
   })
 })
-});
+
+
 
