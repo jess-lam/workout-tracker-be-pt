@@ -3,7 +3,6 @@ const Comments = require('../models/commentModel');
 const restricted = require('../../validation/middleware/restricted-middlware');
 const router = express.Router();
 
-// Get a diet food entry by id
 router.get('/get/:id', (req, res) => {
     const { id } = req.params;
 
