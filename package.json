@@ -10,14 +10,18 @@
     "coverage": "jest --coverage --detectOpenHandles --forceExit || true"
   },
   "jest": {
+    "testEnvironment": "node",
     "collectCoverageFrom": [
       "**/*.js",
       "!**/node_modules/**",
       "!**/vendor/**",
-      "!**/__tests__/**",
-      "!**/coverage/**"
-    ],
-    "testEnvironment": "node"
+      "!**/coverage/**",
+      "!**/db/**",
+      "!**/knexfile.js",
+      "!**/index.js",
+      "!**/users-router.js",
+      "!**/authenticate-middleware.js"
+    ]
   },
   "repository": {
     "type": "git",
