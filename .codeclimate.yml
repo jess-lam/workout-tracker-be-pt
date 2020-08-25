@@ -23,5 +23,4 @@ exclude_patterns:
   - '*.md'
   - '**/*.spec.js'
   - '**/*.test.js'
-  - 'database/'
-  - 'seeds/'
+  - '**/database/'
