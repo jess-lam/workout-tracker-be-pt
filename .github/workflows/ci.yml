@@ -47,7 +47,6 @@
             JWT_PUBLIC: ${{secrets.JWT_PUBLIC}}
             JWT_SECRET: ${{secrets.JWT_SECRET}}
             DB_DATABASE_UR: ${{secrets.DB_DABABASE_URL}}
-            CI: true
             NODE_ENV: test 
             DB_ENV: testing 
           with:
