@@ -7,7 +7,7 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "test": "jest --coverage --watchAll=false",
-    "coverage": "CI=true npm run test || true"
+    "coverage": "jest --coverage --detectOpenHandles --forceExit || true"
   },
   "jest": {
     "collectCoverageFrom": [
