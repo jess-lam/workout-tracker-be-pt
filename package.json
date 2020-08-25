@@ -7,17 +7,21 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "test": "jest --coverage --watchAll=false",
-    "coverage": "CI=true npm run test || true"
+    "coverage": "jest --coverage --detectOpenHandles --forceExit || true"
   },
   "jest": {
+    "testEnvironment": "node",
     "collectCoverageFrom": [
       "**/*.js",
       "!**/node_modules/**",
       "!**/vendor/**",
-      "!**/__tests__/**",
-      "!**/coverage/**"
-    ],
-    "testEnvironment": "node"
+      "!**/coverage/**",
+      "!**/db/**",
+      "!**/knexfile.js",
+      "!**/index.js",
+      "!**/users-router.js",
+      "!**/authenticate-middleware.js"
+    ]
   },
   "repository": {
     "type": "git",
