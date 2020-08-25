@@ -29,6 +29,8 @@ module.exports = function checkRegistrationFields(diet) {
         error.food_name = "A food name is required"
     if (!checkDate.test(data.meal_date))
         error.meal_date = "A valid date is required"
+    if (!checkValidTime.test(data.meal_time))
+        error.meal_time = "A valid time is required"
     if (data.food_quantity = "")
         error.food_quantity = "A valid quantity is required"
     if (data.food_calories = "")
