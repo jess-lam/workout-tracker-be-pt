@@ -24,3 +24,6 @@ exclude_patterns:
   - '**/*.spec.js'
   - '**/*.test.js'
   - '**/database/'
+  - "**/knexfile.js"
+  - "**/index.js",
+  - "**/authenticate-middleware.js"

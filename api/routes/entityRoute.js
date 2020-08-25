@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const workoutMiddleware = require('../../validation/middleware/workout-middleware');
 
 //import model
 const entity = require('../models/entityModel');
