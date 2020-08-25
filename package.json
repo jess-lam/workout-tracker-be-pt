@@ -9,6 +9,12 @@
     "test": "jest --coverage --watchAll=false",
     "coverage": "CI=true npm run test || true"
   },
+  	"scripts": {
+    "server": "nodemon index.js",
+    "start": "node index.js",
+    "test": "jest --detectOpenHandles --forceExit",
+    "coverage": "jest --coverage --detectOpenHandles --forceExit || true"
+  },
   "jest": {
     "collectCoverageFrom": [
       "**/*.js",
