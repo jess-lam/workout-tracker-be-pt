@@ -28,7 +28,7 @@
         # A GitHub action to setup Node.js
         - uses: actions/setup-node@master
           with:
-            node-version: "12.14.1"
+            node-version: "12"
 
         # Run the NPM install command before proceeding
         - run: npm install
@@ -41,6 +41,12 @@
             DB_HOST: ${{ secrets.DB_HOST }}
             DB_TESTNAME: ${{secrets.DB_TESTNAME}}
             DB_LOCALPASSWORD: ${{secrets.DB_LOCALPASSWORD}}
+            DB_NAME: ${{secrets.DB_NAME}}
+            DB_URL: ${{secrets.DB_URL}}
+            DB_USER: ${{secrets.DB_USER}}
+            JWT_PUBLIC: ${{secrets.JWT_PUBLIC}}
+            JWT_SECRET: ${{secrets.JWT_SECRET}}
+            DB_DATABASE_UR: ${{secrets.DB_DABABASE_URL}}
             CI: true
             NODE_ENV: test 
           with:
