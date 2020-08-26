@@ -1,3 +1,5 @@
+![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Maintainability](https://api.codeclimate.com/v1/badges/7081253f23a08f107ff0/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/workout-tracker-be-pt7/maintainability)
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/7081253f23a08f107ff0/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/workout-tracker-be-pt7/test_coverage)
