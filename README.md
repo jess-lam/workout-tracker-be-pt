@@ -2,6 +2,24 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/7081253f23a08f107ff0/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/workout-tracker-be-pt7/test_coverage)
 
+## Contributors
+
+| James Morris(TL) 
+| Nathan Buckingham
+| Kristi Gribble                                                                         
+| Giovani Garfias                                                                           
+| Jessica Lam                                                                               
+| Leza Jackson                                                                              
+| 
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| <img src="https://ca.slack-edge.com/ESZCHB482-W0123RR2PEK-26dbfd89f42f-512" width="200"/> |
+ <img src="https://ca.slack-edge.com/ESZCHB482-W012X6V33FT-b0824de3c68e-512" width="200"/> |
+ <img src="https://ca.slack-edge.com/ESZCHB482-W012JHUHGMQ-31d6b2964235-512" width="200"/> | 
+<img src="https://ca.slack-edge.com/ESZCHB482-W0123RPE2MD-dbf744806054-512" width="200"/> | 
+<img src="https://ca.slack-edge.com/ESZCHB482-W0138D5EX7A-bfe9e84094e0-512" width="200"/> | 
+<img src="https://ca.slack-edge.com/ESZCHB482-W012X6U4XFB-f03156cf5995-512" width="200"/> |
+
+
 # API Documentation
 
 #### Backend deployed at [Heroku](https://dashboard.heroku.com/apps/frozen-hamlet-18508/deploy/github) <br>
