@@ -42,7 +42,7 @@
             DB_TESTNAME: ${{secrets.DB_TESTNAME}}
             DB_LOCALPASSWORD: ${{secrets.DB_LOCALPASSWORD}}
             DB_NAME: ${{secrets.DB_NAME}}
-            DB_URL: ${{secrets.DB_URL}}
+            DATABASE_URL: ${{secrets.DATABASE_URL}}
             DB_USER: ${{secrets.DB_USER}}
             JWT_PUBLIC: ${{secrets.JWT_PUBLIC}}
             JWT_SECRET: ${{secrets.JWT_SECRET}}

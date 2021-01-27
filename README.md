@@ -259,7 +259,7 @@ create a .env file that includes the following:
 *DB_USER=
 *DB_PASSWORD=
 *DB_SSLMODE=
-\*DB_URL=
+\*DATABASE_URL=
 
 \*DB_DATABASE_URL=
 
